@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		3B7FEF032B4ACCBE00B5890B /* SimpleIntervalTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF022B4ACCBE00B5890B /* SimpleIntervalTimerApp.swift */; };
-		3B7FEF052B4ACCBE00B5890B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF042B4ACCBE00B5890B /* ContentView.swift */; };
+		3B7FEF052B4ACCBE00B5890B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF042B4ACCBE00B5890B /* MainView.swift */; };
 		3B7FEF072B4ACCBF00B5890B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FEF062B4ACCBF00B5890B /* Assets.xcassets */; };
 		3B7FEF0A2B4ACCBF00B5890B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FEF092B4ACCBF00B5890B /* Preview Assets.xcassets */; };
 		3B7FEF142B4ACCBF00B5890B /* SimpleIntervalTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF132B4ACCBF00B5890B /* SimpleIntervalTimerTests.swift */; };
 		3B7FEF1E2B4ACCBF00B5890B /* SimpleIntervalTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF1D2B4ACCBF00B5890B /* SimpleIntervalTimerUITests.swift */; };
 		3B7FEF202B4ACCBF00B5890B /* SimpleIntervalTimerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF1F2B4ACCBF00B5890B /* SimpleIntervalTimerUITestsLaunchTests.swift */; };
+		3B7FEF2D2B4B09DF00B5890B /* AppTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF2C2B4B09DF00B5890B /* AppTimer.swift */; };
+		3B7FEF2F2B4B1F7800B5890B /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF2E2B4B1F7800B5890B /* TimerView.swift */; };
+		3B7FEF312B4B3D7700B5890B /* AltTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF302B4B3D7700B5890B /* AltTimerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +39,7 @@
 /* Begin PBXFileReference section */
 		3B7FEEFF2B4ACCBE00B5890B /* SimpleIntervalTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleIntervalTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7FEF022B4ACCBE00B5890B /* SimpleIntervalTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleIntervalTimerApp.swift; sourceTree = "<group>"; };
-		3B7FEF042B4ACCBE00B5890B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3B7FEF042B4ACCBE00B5890B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3B7FEF062B4ACCBF00B5890B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B7FEF092B4ACCBF00B5890B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3B7FEF0F2B4ACCBF00B5890B /* SimpleIntervalTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleIntervalTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +47,9 @@
 		3B7FEF192B4ACCBF00B5890B /* SimpleIntervalTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleIntervalTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7FEF1D2B4ACCBF00B5890B /* SimpleIntervalTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleIntervalTimerUITests.swift; sourceTree = "<group>"; };
 		3B7FEF1F2B4ACCBF00B5890B /* SimpleIntervalTimerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleIntervalTimerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3B7FEF2C2B4B09DF00B5890B /* AppTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTimer.swift; sourceTree = "<group>"; };
+		3B7FEF2E2B4B1F7800B5890B /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		3B7FEF302B4B3D7700B5890B /* AltTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltTimerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,9 +101,12 @@
 			isa = PBXGroup;
 			children = (
 				3B7FEF022B4ACCBE00B5890B /* SimpleIntervalTimerApp.swift */,
-				3B7FEF042B4ACCBE00B5890B /* ContentView.swift */,
+				3B7FEF042B4ACCBE00B5890B /* MainView.swift */,
+				3B7FEF2C2B4B09DF00B5890B /* AppTimer.swift */,
+				3B7FEF2E2B4B1F7800B5890B /* TimerView.swift */,
 				3B7FEF062B4ACCBF00B5890B /* Assets.xcassets */,
 				3B7FEF082B4ACCBF00B5890B /* Preview Content */,
+				3B7FEF302B4B3D7700B5890B /* AltTimerView.swift */,
 			);
 			path = SimpleIntervalTimer;
 			sourceTree = "<group>";
@@ -257,7 +266,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B7FEF052B4ACCBE00B5890B /* ContentView.swift in Sources */,
+				3B7FEF2D2B4B09DF00B5890B /* AppTimer.swift in Sources */,
+				3B7FEF052B4ACCBE00B5890B /* MainView.swift in Sources */,
+				3B7FEF312B4B3D7700B5890B /* AltTimerView.swift in Sources */,
+				3B7FEF2F2B4B1F7800B5890B /* TimerView.swift in Sources */,
 				3B7FEF032B4ACCBE00B5890B /* SimpleIntervalTimerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

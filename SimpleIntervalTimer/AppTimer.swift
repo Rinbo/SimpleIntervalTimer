@@ -1,28 +1,45 @@
-//
-//  Timer.swift
-//  SimpleIntervalTimer
-//
-//  Created by Robin Börjesson on 2024-01-07.
-//
-
 import Foundation
 
 class AppTimer {
 
+    private var active : Bool
     private var timerCount : Duration
-    private var active : Bool = false
-    
+    private var timer : Timer?
+       
     init(timerCount: Duration) {
+        self.active = false;
         self.timerCount = timerCount
     }
     
     func start() {
-        active = true
+        if active == false {
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in self.tick()}
+            active = true
+        }
     }
     
     func stop() {
-        active = false
+        if active == true {
+            timer?.invalidate()
+            active = false
+        }
     }
     
+    func tick() {
+        if (timerCount <= Duration.zero) {
+            timerCount = Duration.seconds(60);
+            active = false;
+            timer?.invalidate()
+            return;
+        }
+        
+        if active == true {
+            print("ticking...")
+            timerCount -= timerCount - Duration.seconds(1)
+        }
+    }
     
+    func getTimerCount() -> Duration {
+        return timerCount;
+    }
 }
