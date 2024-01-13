@@ -3,15 +3,15 @@ import SwiftUI
 import Combine
 
 struct AltTimerView: View {
-    @State private var countdownDuration = 5
-    @State private var currentCountdown = 5
+    @State private var countdownDuration = 50
+    @State private var currentCountdown = 50
     @State private var timer: Timer.TimerPublisher?
     @State private var timerCancellable: AnyCancellable?
     @State private var active: Bool = false;
     @State private var firstTime: Bool = true;
     
     var body: some View {
-        Text("\(currentCountdown) seconds remaining")
+        Text("\(currentCountdown / 10) seconds remaining")
             .font(.system(size: 30))
             .padding()
            
@@ -36,7 +36,7 @@ struct AltTimerView: View {
     }
     
     func startTimerForTheFirstTime() {
-        timer = Timer.publish(every: 1, on: .main, in: .common)
+        timer = Timer.publish(every: 0.1, on: .main, in: .common)
         timerCancellable = timer?.autoconnect().sink { _ in tick() }
     }
     
@@ -48,7 +48,6 @@ struct AltTimerView: View {
     }
     
     func tick() {
-        print("Am I delayed?")
         if currentCountdown <= 0 {
             reset()
             return
