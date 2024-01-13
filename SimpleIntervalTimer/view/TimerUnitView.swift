@@ -3,10 +3,7 @@ import SwiftUI
 import Combine
 
 struct TimerUnitView: View {
-    @StateObject private var model: TimerUnitViewModel = TimerUnitViewModel(startValue: Duration.seconds(5), onCompletion: {
-        print("I AM FINISHED")
-    })
-    
+    @StateObject var model: TimerUnitViewModel;
     
     var body: some View {
         Text(model.currentValue.formatted(Duration.TimeFormatStyle.time(pattern: .minuteSecond(padMinuteToLength: 2))))
@@ -14,12 +11,16 @@ struct TimerUnitView: View {
             .padding()
         
         
-        Button(model.active ? "Pause" : "Start") {
-            model.toggleActive()
+        Button(action: { model.toggleActive() }) {
+            Image(systemName: model.active ? "pause.circle.fill": "play.circle.fill")
+                .font(.system(size: 100))
+
         }
-        .buttonStyle(.borderedProminent)
-        .font(.title)
-        .padding()
+        .buttonStyle(.borderless)
+        .foregroundColor(.green)
+        .transaction { transaction in
+            transaction.disablesAnimations = true
+        }
     }
 }
 

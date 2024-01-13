@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3B41D2BB2B52A3E200646D49 /* TimerUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D2BA2B52A3E200646D49 /* TimerUnitView.swift */; };
 		3B41D2C12B52B12900646D49 /* TimerUnitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D2C02B52B12900646D49 /* TimerUnitViewModel.swift */; };
+		3B41D2C32B5323E000646D49 /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D2C22B5323E000646D49 /* TimerController.swift */; };
+		3B41D2C52B53243B00646D49 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D2C42B53243B00646D49 /* SettingsModel.swift */; };
+		3B41D2C72B532BBC00646D49 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D2C62B532BBC00646D49 /* TimerView.swift */; };
 		3B7FEF032B4ACCBE00B5890B /* SimpleIntervalTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF022B4ACCBE00B5890B /* SimpleIntervalTimerApp.swift */; };
 		3B7FEF052B4ACCBE00B5890B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF042B4ACCBE00B5890B /* MainView.swift */; };
 		3B7FEF072B4ACCBF00B5890B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FEF062B4ACCBF00B5890B /* Assets.xcassets */; };
@@ -17,7 +20,7 @@
 		3B7FEF1E2B4ACCBF00B5890B /* SimpleIntervalTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF1D2B4ACCBF00B5890B /* SimpleIntervalTimerUITests.swift */; };
 		3B7FEF202B4ACCBF00B5890B /* SimpleIntervalTimerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF1F2B4ACCBF00B5890B /* SimpleIntervalTimerUITestsLaunchTests.swift */; };
 		3B7FEF2D2B4B09DF00B5890B /* AppTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF2C2B4B09DF00B5890B /* AppTimer.swift */; };
-		3B7FEF2F2B4B1F7800B5890B /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF2E2B4B1F7800B5890B /* TimerView.swift */; };
+		3B7FEF2F2B4B1F7800B5890B /* _TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF2E2B4B1F7800B5890B /* _TimerView.swift */; };
 		3B7FEF312B4B3D7700B5890B /* AltTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF302B4B3D7700B5890B /* AltTimerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +44,9 @@
 /* Begin PBXFileReference section */
 		3B41D2BA2B52A3E200646D49 /* TimerUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerUnitView.swift; sourceTree = "<group>"; };
 		3B41D2C02B52B12900646D49 /* TimerUnitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerUnitViewModel.swift; sourceTree = "<group>"; };
+		3B41D2C22B5323E000646D49 /* TimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerController.swift; sourceTree = "<group>"; };
+		3B41D2C42B53243B00646D49 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		3B41D2C62B532BBC00646D49 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		3B7FEEFF2B4ACCBE00B5890B /* SimpleIntervalTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleIntervalTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7FEF022B4ACCBE00B5890B /* SimpleIntervalTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleIntervalTimerApp.swift; sourceTree = "<group>"; };
 		3B7FEF042B4ACCBE00B5890B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -52,7 +58,7 @@
 		3B7FEF1D2B4ACCBF00B5890B /* SimpleIntervalTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleIntervalTimerUITests.swift; sourceTree = "<group>"; };
 		3B7FEF1F2B4ACCBF00B5890B /* SimpleIntervalTimerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleIntervalTimerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3B7FEF2C2B4B09DF00B5890B /* AppTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTimer.swift; sourceTree = "<group>"; };
-		3B7FEF2E2B4B1F7800B5890B /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		3B7FEF2E2B4B1F7800B5890B /* _TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _TimerView.swift; sourceTree = "<group>"; };
 		3B7FEF302B4B3D7700B5890B /* AltTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltTimerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +90,7 @@
 		3B41D2BC2B52B05B00646D49 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				3B41D2C62B532BBC00646D49 /* TimerView.swift */,
 				3B41D2BA2B52A3E200646D49 /* TimerUnitView.swift */,
 				3B7FEF042B4ACCBE00B5890B /* MainView.swift */,
 			);
@@ -94,6 +101,8 @@
 			isa = PBXGroup;
 			children = (
 				3B41D2C02B52B12900646D49 /* TimerUnitViewModel.swift */,
+				3B41D2C22B5323E000646D49 /* TimerController.swift */,
+				3B41D2C42B53243B00646D49 /* SettingsModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -102,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				3B7FEF302B4B3D7700B5890B /* AltTimerView.swift */,
-				3B7FEF2E2B4B1F7800B5890B /* TimerView.swift */,
+				3B7FEF2E2B4B1F7800B5890B /* _TimerView.swift */,
 				3B7FEF2C2B4B09DF00B5890B /* AppTimer.swift */,
 			);
 			path = ref;
@@ -296,11 +305,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B41D2C72B532BBC00646D49 /* TimerView.swift in Sources */,
+				3B41D2C52B53243B00646D49 /* SettingsModel.swift in Sources */,
 				3B7FEF2D2B4B09DF00B5890B /* AppTimer.swift in Sources */,
 				3B7FEF052B4ACCBE00B5890B /* MainView.swift in Sources */,
 				3B7FEF312B4B3D7700B5890B /* AltTimerView.swift in Sources */,
 				3B41D2BB2B52A3E200646D49 /* TimerUnitView.swift in Sources */,
-				3B7FEF2F2B4B1F7800B5890B /* TimerView.swift in Sources */,
+				3B7FEF2F2B4B1F7800B5890B /* _TimerView.swift in Sources */,
+				3B41D2C32B5323E000646D49 /* TimerController.swift in Sources */,
 				3B41D2C12B52B12900646D49 /* TimerUnitViewModel.swift in Sources */,
 				3B7FEF032B4ACCBE00B5890B /* SimpleIntervalTimerApp.swift in Sources */,
 			);

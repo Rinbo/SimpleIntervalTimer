@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-struct TimerView: View {
+struct _TimerView: View {
     private static let DEFAULT_TIMER_COUNT : Duration = Duration.seconds(10);
     
     @State private var timerCount = DEFAULT_TIMER_COUNT
@@ -13,7 +13,7 @@ struct TimerView: View {
             .font(.system(size: 100))
             .onReceive(timer) { _ in
                 if timerCount <= Duration.zero {
-                    timerCount = TimerView.DEFAULT_TIMER_COUNT
+                    timerCount = _TimerView.DEFAULT_TIMER_COUNT
                     active = false
                     return
                 }
@@ -35,7 +35,7 @@ struct TimerView: View {
         
         Button("Reset") {
             active = false
-            timerCount = TimerView.DEFAULT_TIMER_COUNT
+            timerCount = _TimerView.DEFAULT_TIMER_COUNT
         }
         .font(.title2)
         .foregroundColor(.secondary)
