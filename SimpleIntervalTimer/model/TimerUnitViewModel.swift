@@ -21,10 +21,12 @@ class TimerUnitViewModel : ObservableObject {
     func toggleActive() {
         active = !active
         
-        if (timer == nil) {
-            timer = Timer.publish(every: TimeInterval(TimerUnitViewModel.PUBLISHING_INTERVAL_MS) / 1000, on: .main, in: .common)
-            timerCancellable = timer?.autoconnect().sink { _ in self.tick() }
-        }
+        if (timer == nil) { initTimer() }
+    }
+    
+    func initTimer() {
+        timer = Timer.publish(every: TimeInterval(TimerUnitViewModel.PUBLISHING_INTERVAL_MS) / 1000, on: .main, in: .common)
+        timerCancellable = timer?.autoconnect().sink { _ in self.tick() }
     }
     
     func tick() {
@@ -39,7 +41,6 @@ class TimerUnitViewModel : ObservableObject {
     }
     
     func completeCountdown() {
-        active = false;
         timerCancellable?.cancel()
         timer = nil
         onCompletion()
@@ -47,6 +48,8 @@ class TimerUnitViewModel : ObservableObject {
     
     func reInit(currentValue: Duration, activate: Bool = true)  {
         self.currentValue = currentValue
-        if activate { toggleActive() }
+        if activate {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { self.initTimer() }
+        }
     }
 }
