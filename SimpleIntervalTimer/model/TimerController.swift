@@ -4,14 +4,22 @@ import Combine
 
 class TimerController : ObservableObject{
     private let settingsModel: SettingsModel
+    
+    @Published var description: String
     @Published var currentTimeUnitViewModel : TimerUnitViewModel
     @Published var currentRound: Int = 1;
     @Published var isRestRound : Bool = false
     
     init(settingsModel: SettingsModel){
         self.settingsModel = settingsModel
+        self.description = TimerController.getDescription(1, settingsModel.numberOfRounds)
+        
         self.currentTimeUnitViewModel = TimerUnitViewModel(startValue: settingsModel.roundDuration, onCompletion: {})
         self.currentTimeUnitViewModel.onCompletion = { self.next() }
+    }
+    
+    private static func getDescription(_ currentRound: Int, _ totalRounds: Int) -> String {
+        return "Round \(currentRound) of \(totalRounds)"
     }
     
     func next() {
@@ -19,6 +27,8 @@ class TimerController : ObservableObject{
             print("we are finished")
             currentTimeUnitViewModel.reInit(currentValue: settingsModel.roundDuration, activate: false)
             currentRound = 1;
+            description = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
+            currentTimeUnitViewModel.active = false
             return;
         }
         
@@ -31,8 +41,8 @@ class TimerController : ObservableObject{
         
         currentTimeUnitViewModel.reInit(currentValue: settingsModel.roundDuration)
         currentRound += 1;
+        description = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
+        isRestRound = false
         print("We are moving to the next round")
-        
     }
-    
 }
