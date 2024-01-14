@@ -14,7 +14,6 @@ struct TimerUnitView: View {
         Button(action: { model.toggleActive() }) {
             Image(systemName: model.active ? "pause.circle.fill": "play.circle.fill")
                 .font(.system(size: 100))
-
         }
         .buttonStyle(.borderless)
         .foregroundColor(.green)
