@@ -25,10 +25,7 @@ class TimerController : ObservableObject{
     func next() {
         if currentRound == settingsModel.numberOfRounds {
             print("we are finished")
-            currentTimeUnitViewModel.reInit(currentValue: settingsModel.roundDuration, activate: false)
-            currentRound = 1;
-            description = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
-            currentTimeUnitViewModel.active = false
+            reset()
             return;
         }
         
@@ -44,5 +41,13 @@ class TimerController : ObservableObject{
         description = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
         isRestRound = false
         print("We are moving to the next round")
+    }
+    
+    func reset() {
+        currentTimeUnitViewModel.reInit(currentValue: settingsModel.roundDuration, activate: false)
+        currentRound = 1;
+        isRestRound = false
+        description = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
+        currentTimeUnitViewModel.active = false
     }
 }

@@ -1,18 +1,19 @@
 import SwiftUI
 
 struct MainView: View {
+    @StateObject var timerController: TimerController
     
     var body: some View {
         VStack {
-            TimerView(timerController: TimerController(settingsModel: SettingsModel()))
+            TimerView(timerController: timerController)
             VStack {
                 Spacer()
                 HStack {
                     Spacer()
                     
-                    Button(action: { print("reset") }){
+                    Button(action: { timerController.reset() }){
                         Image(systemName: "arrow.clockwise")
-                            .font(.system(size: 70))
+                            .font(.system(size: 60))
                     }
                     .foregroundColor(.accentColor)
                     
@@ -20,10 +21,9 @@ struct MainView: View {
                     
                     Button(action: { print("reset") }){
                         Image(systemName: "slider.horizontal.3")
-                            .font(.system(size: 70))
+                            .font(.system(size: 60))
                     }
                     .foregroundColor(.accentColor)
-                    
                     
                     Spacer()
                 }
@@ -33,5 +33,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    MainView(timerController: TimerController(settingsModel: SettingsModel()))
 }

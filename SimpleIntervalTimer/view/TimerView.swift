@@ -22,22 +22,3 @@ struct TimerView : View {
         }
     }
 }
-
-#Preview {
-    MainView()
-}
-
-/*
- 
- var body: some View {
- ZStack(alignment: .top) {
- VStack {
- Text(timerController.description).font(.title)
- TimerUnitView(model: timerController.currentTimeUnitViewModel)
- }
- .padding(30)
- 
- if timerController.isRestRound { Text("RESTING") }
- }
- }
- */

@@ -22,7 +22,3 @@ struct TimerUnitView: View {
         }
     }
 }
-
-#Preview {
-    MainView()
-}

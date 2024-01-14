@@ -42,6 +42,3 @@ struct _TimerView: View {
     }
 }
 
-#Preview {
-    MainView()
-}

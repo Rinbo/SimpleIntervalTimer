@@ -53,7 +53,3 @@ class TimerUnitViewModel : ObservableObject {
         }
     }
 }
-
-#Preview {
-    MainView()
-}

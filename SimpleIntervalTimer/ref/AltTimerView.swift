@@ -58,7 +58,3 @@ struct AltTimerView: View {
         }
     }
 }
-
-#Preview {
-    MainView()
-}
