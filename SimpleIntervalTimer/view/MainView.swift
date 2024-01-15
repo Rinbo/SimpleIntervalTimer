@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var timerController: TimerController
+    @State private var showingSettings = false
     
     var body: some View {
         VStack {
@@ -19,11 +20,14 @@ struct MainView: View {
                     
                     Spacer()
                     
-                    Button(action: { print("reset") }){
+                    Button(action: { showingSettings = true }){
                         Image(systemName: "slider.horizontal.3")
                             .font(.system(size: 60))
                     }
                     .foregroundColor(.accentColor)
+                    .sheet(isPresented: $showingSettings) {
+                        SettingsView(isPresented: $showingSettings, settingsModel: timerController.settingsModel)
+                    }
                     
                     Spacer()
                 }

@@ -3,7 +3,7 @@ import SwiftUI
 import Combine
 
 class TimerController : ObservableObject{
-    private let settingsModel: SettingsModel
+    let settingsModel: SettingsModel
     
     @Published var description: String
     @Published var currentTimeUnitViewModel : TimerUnitViewModel
