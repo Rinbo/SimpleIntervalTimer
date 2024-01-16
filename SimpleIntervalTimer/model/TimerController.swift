@@ -3,7 +3,7 @@ import SwiftUI
 import Combine
 
 class TimerController : ObservableObject{
-    let settingsModel: SettingsModel
+    var settingsModel: SettingsModel
     
     @Published var description: String
     @Published var currentTimeUnitViewModel : TimerUnitViewModel
@@ -41,6 +41,10 @@ class TimerController : ObservableObject{
         description = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
         isRestRound = false
         print("We are moving to the next round")
+    }
+    
+    func update(settingsModel: SettingsModel) {
+        self.settingsModel = settingsModel
     }
     
     func reset() {

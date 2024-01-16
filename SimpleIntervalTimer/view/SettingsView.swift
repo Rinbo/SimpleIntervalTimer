@@ -6,6 +6,7 @@ struct SettingsView: View {
     @State var selectedRestDuration: Duration
     @State var selectedRoundDuration: Duration
     @State var selectedNumberOfRounds: Int
+    private let callback: (_ settingsModel: SettingsModel) -> Void
     
     private var restDurations: [DurationOption] {
         AppConfig.restDurations.map { DurationOption(duration: $0) }
@@ -15,28 +16,19 @@ struct SettingsView: View {
         AppConfig.roundDurations.map { DurationOption(duration: $0) }
     }
     
-    init(isPresented: Binding<Bool>, settingsModel: SettingsModel) {
+    init(isPresented: Binding<Bool>, settingsModel: SettingsModel, callback: @escaping (_ settingsModel: SettingsModel) -> Void) {
         self._isPresented = isPresented
-        self._selectedRestDuration = State(initialValue: settingsModel.restDuration)
+        self.selectedRestDuration = settingsModel.restDuration
         self.selectedRoundDuration = settingsModel.roundDuration
         self.selectedNumberOfRounds = settingsModel.numberOfRounds
+        self.callback = callback
     }
     
     var body: some View {
+        Spacer()
         HStack {
             VStack {
-                Text("Rest").font(.title)
-                Picker("Rest", selection: $selectedRestDuration) {
-                    ForEach(restDurations) { option in
-                        Text(option.label).tag(option.duration)
-                    }
-                }
-                .pickerStyle(WheelPickerStyle())
-                .clipped()
-            }
-            
-            VStack {
-                Text("Round").font(.title)
+                Text("Round Duration").font(.title3).multilineTextAlignment(.center)
                 Picker("Rest", selection: $selectedRoundDuration) {
                     ForEach(roundDurations) { option in
                         Text(option.label).tag(option.duration)
@@ -46,9 +38,33 @@ struct SettingsView: View {
                 .clipped()
             }
             
+            VStack {
+                Text("Rounds").font(.title3)
+                Picker("Rest", selection: $selectedNumberOfRounds) {
+                    ForEach(1...15, id: \.self) { number in
+                        Text("\(number)").tag(number)
+                    }
+                }
+                .pickerStyle(WheelPickerStyle())
+                .clipped()
+            }
             
-        }
-        Button(action: { isPresented = false}){
+            VStack {
+                Text("Rest Duration").font(.title3).multilineTextAlignment(.center)
+                Picker("Rest", selection: $selectedRestDuration) {
+                    ForEach(restDurations) { option in
+                        Text(option.label).tag(option.duration)
+                    }
+                }
+                .pickerStyle(WheelPickerStyle())
+                .clipped()
+            }
+        }.padding(20)
+        Spacer()
+        Button(action: {
+            isPresented = false
+            callback(SettingsModel(numberOfRounds: selectedNumberOfRounds, roundDuration: selectedRoundDuration, restDuration: selectedRestDuration))
+        }){
             Image(systemName: "checkmark")
                 .font(.system(size: 60))
         }
@@ -67,16 +83,19 @@ struct DurationOption: Identifiable {
 struct AppConfig {
     static let restDurations: [Duration] = [
         Duration.zero,
+        Duration.seconds(5),
+        Duration.seconds(10),
         Duration.seconds(15),
         Duration.seconds(30),
         Duration.seconds(60)
     ]
     
     static let roundDurations: [Duration] = [
-        Duration.zero,
+        Duration.seconds(5),
         Duration.seconds(15),
         Duration.seconds(30),
-        Duration.seconds(60)
+        Duration.seconds(60),
+        Duration.seconds(90)
     ]
 }
 

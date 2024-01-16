@@ -26,7 +26,10 @@ struct MainView: View {
                     }
                     .foregroundColor(.accentColor)
                     .sheet(isPresented: $showingSettings) {
-                        SettingsView(isPresented: $showingSettings, settingsModel: timerController.settingsModel)
+                        SettingsView(isPresented: $showingSettings, settingsModel: timerController.settingsModel, callback: {(settingsModel: SettingsModel) in
+                            timerController.update(settingsModel: settingsModel)
+                            timerController.reset();
+                        })
                     }
                     
                     Spacer()
