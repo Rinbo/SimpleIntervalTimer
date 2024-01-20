@@ -1,6 +1,16 @@
 import Foundation
 
 struct SettingsModel {
+    static let NUMBER_OF_ROUNDS_KEY: String = "NumberOfRounds"
+    static let ROUND_DURATION_KEY: String = "RoundDuration"
+    static let REST_DURATION_KEY: String = "RestDuration"
+    static let WARNING_DURATION_KEY: String = "WarningDuration"
+    
+    static let DEFAULT_NUMBER_OF_ROUNDS: Int = 3
+    static let DEFAULT_ROUND_DURATION: Duration = Duration.seconds(180)
+    static let DEFAULT_REST_DURATION: Duration = Duration.seconds(60)
+    static let DEFAULT_WARNING_DURATION: Duration = Duration.seconds(10)
+    
     let numberOfRounds: Int
     let roundDuration: Duration
     let restDuration: Duration

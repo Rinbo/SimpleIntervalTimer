@@ -45,6 +45,7 @@ class TimerController : ObservableObject{
     
     func update(settingsModel: SettingsModel) {
         self.settingsModel = settingsModel
+        saveSettingsModel(settingsModel)
     }
     
     func reset() {
@@ -53,5 +54,14 @@ class TimerController : ObservableObject{
         isRestRound = false
         description = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
         currentTimeUnitViewModel.active = false
+    }
+    
+    private func saveSettingsModel(_ settingsModel: SettingsModel) {
+        let defaults = UserDefaults.standard
+        
+        defaults.set(settingsModel.numberOfRounds, forKey: SettingsModel.NUMBER_OF_ROUNDS_KEY)
+        defaults.set(settingsModel.roundDuration.components.seconds, forKey: SettingsModel.ROUND_DURATION_KEY)
+        defaults.set(settingsModel.restDuration.components.seconds, forKey: SettingsModel.REST_DURATION_KEY)
+        defaults.set(settingsModel.warningDuration.components.seconds, forKey: SettingsModel.WARNING_DURATION_KEY)
     }
 }
