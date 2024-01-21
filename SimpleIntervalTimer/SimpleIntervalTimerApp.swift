@@ -4,7 +4,7 @@ import SwiftUI
 struct SimpleIntervalTimerApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView(timerController: TimerController(settingsModel: loadSavedSettingsModel()))
+            MainView(controller: TimerController(settingsModel: loadSavedSettingsModel()))
         }
     }
     

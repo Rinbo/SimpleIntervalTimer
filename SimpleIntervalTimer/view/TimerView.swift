@@ -3,20 +3,28 @@ import SwiftUI
 import Combine
 
 struct TimerView : View {
-    @StateObject var timerController: TimerController
+    @ObservedObject var model: TimerViewModel
+    var isRestRound: Bool
     
     var body: some View {
+        Text(model.currentValue.formatted(Duration.TimeFormatStyle.time(pattern: .minuteSecond(padMinuteToLength: 2))))
+            .font(.system(size: 100))
+            .foregroundColor(isRestRound ? .gray : .primary)
+            .padding()
         
-        VStack {
-            Spacer()
-            if timerController.isRestRound { Text("RESTING") }
+        
+        Button(action: { model.toggleActive() }) {
+            Image(systemName: model.active ? "pause.circle.fill": "play.circle.fill")
+                .font(.system(size: 100))
         }
-        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
-        
-        
-        VStack {
-            Text(timerController.description).font(.title)
-            TimerUnitView(model: timerController.currentTimeUnitViewModel, isResting: timerController.isRestRound)
+        .buttonStyle(.borderless)
+        .foregroundColor(.green)
+        .transaction { transaction in
+            transaction.disablesAnimations = true
         }
     }
+}
+
+#Preview {
+    MainView(controller: TimerController(settingsModel: SettingsModel()))
 }

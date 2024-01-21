@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-class TimerUnitViewModel : ObservableObject {
+class TimerViewModel : ObservableObject {
     private static let PUBLISHING_INTERVAL_MS: Int = 1000
     
     @Published var currentValue : Duration
@@ -30,7 +30,7 @@ class TimerUnitViewModel : ObservableObject {
     }
     
     func initTimer() {
-        timer = Timer.publish(every: TimeInterval(TimerUnitViewModel.PUBLISHING_INTERVAL_MS) / 1000, on: .main, in: .common)
+        timer = Timer.publish(every: TimeInterval(TimerViewModel.PUBLISHING_INTERVAL_MS) / 1000, on: .main, in: .common)
         timerCancellable = timer?.autoconnect().sink { _ in self.tick() }
     }
     
@@ -41,7 +41,7 @@ class TimerUnitViewModel : ObservableObject {
         }
         
         if active {
-            currentValue -= Duration.milliseconds(TimerUnitViewModel.PUBLISHING_INTERVAL_MS);
+            currentValue -= Duration.milliseconds(TimerViewModel.PUBLISHING_INTERVAL_MS);
         }
     }
     

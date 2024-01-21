@@ -5,17 +5,17 @@ import Combine
 class TimerController : ObservableObject{
     var settingsModel: SettingsModel
     
-    @Published var description: String
-    @Published var currentTimeUnitViewModel : TimerUnitViewModel
+    @Published var roundBanner: String
+    @ObservedObject var timerViewModel : TimerViewModel
     @Published var currentRound: Int = 1;
     @Published var isRestRound : Bool = false
     
     init(settingsModel: SettingsModel){
         self.settingsModel = settingsModel
-        self.description = TimerController.getDescription(1, settingsModel.numberOfRounds)
+        self.roundBanner = TimerController.getDescription(1, settingsModel.numberOfRounds)
         
-        self.currentTimeUnitViewModel = TimerUnitViewModel(startValue: settingsModel.roundDuration, onCompletion: {})
-        self.currentTimeUnitViewModel.onCompletion = { self.next() }
+        self.timerViewModel = TimerViewModel(startValue: settingsModel.roundDuration, onCompletion: {})
+        self.timerViewModel.onCompletion = { self.next() }
     }
     
     private static func getDescription(_ currentRound: Int, _ totalRounds: Int) -> String {
@@ -33,14 +33,14 @@ class TimerController : ObservableObject{
         SoundService.shared.playSound("round-start-end")
         if !isRestRound && settingsModel.restDuration != Duration.zero {
             isRestRound = true;
-            currentTimeUnitViewModel.reInit(currentValue: settingsModel.restDuration)
+            timerViewModel.reInit(currentValue: settingsModel.restDuration)
             print("We are going to rest round")
             return;
         }
         
-        currentTimeUnitViewModel.reInit(currentValue: settingsModel.roundDuration)
+        timerViewModel.reInit(currentValue: settingsModel.roundDuration)
         currentRound += 1;
-        description = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
+        roundBanner = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
         isRestRound = false
         print("We are moving to the next round")
     }
@@ -51,12 +51,12 @@ class TimerController : ObservableObject{
     }
     
     func reset() {
-        currentTimeUnitViewModel.cancelTimer()
-        currentTimeUnitViewModel.reInit(currentValue: settingsModel.roundDuration, activate: false)
+        timerViewModel.cancelTimer()
+        timerViewModel.reInit(currentValue: settingsModel.roundDuration, activate: false)
         currentRound = 1;
         isRestRound = false
-        description = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
-        currentTimeUnitViewModel.active = false
+        roundBanner = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
+        timerViewModel.active = false
     }
     
     private func saveSettingsModel(_ settingsModel: SettingsModel) {

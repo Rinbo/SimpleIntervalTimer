@@ -1,25 +1,29 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var timerController: TimerController
+    @ObservedObject var controller: TimerController
     @State private var showingSettings = false
     
     var body: some View {
         VStack {
-            TimerView(timerController: timerController)
+            VStack {
+                Spacer()
+                if controller.isRestRound { Text("REST").font(.title) }
+            }
+            
+            Text(controller.roundBanner).font(.largeTitle).padding(.bottom, -15.0)
+            TimerView(model: controller.timerViewModel, isRestRound: controller.isRestRound)
+            
             VStack {
                 Spacer()
                 HStack {
                     Spacer()
                     
                     Button(action: {
-                        timerController.reset()
+                        controller.reset()
                         SoundService.shared.playSound("play-pause")
-                    }){
-                        Image(systemName: "arrow.clockwise")
-                            .font(.system(size: 60))
-                    }
-                    .foregroundColor(.accentColor)
+                    }){ Image(systemName: "arrow.clockwise").font(.system(size: 60)) }
+                        .foregroundColor(.accentColor)
                     
                     Spacer()
                     
@@ -29,19 +33,19 @@ struct MainView: View {
                     }
                     .foregroundColor(.accentColor)
                     .sheet(isPresented: $showingSettings) {
-                        SettingsView(isPresented: $showingSettings, settingsModel: timerController.settingsModel, callback: {(settingsModel: SettingsModel) in
-                            timerController.update(settingsModel: settingsModel)
-                            timerController.reset();
+                        SettingsView(isPresented: $showingSettings, settingsModel: controller.settingsModel, callback: {(settingsModel: SettingsModel) in
+                            controller.update(settingsModel: settingsModel)
+                            controller.reset();
                         })
                     }
                     
                     Spacer()
                 }
             }
-        }.background(timerController.isRestRound ? Color.gray.opacity(0.1) : Color(UIColor.systemBackground))
+        }.background(controller.isRestRound ? Color.gray.opacity(0.1) : Color(UIColor.systemBackground))
     }
 }
 
 #Preview {
-    MainView(timerController: TimerController(settingsModel: SettingsModel()))
+    MainView(controller: TimerController(settingsModel: SettingsModel()))
 }

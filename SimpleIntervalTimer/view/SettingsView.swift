@@ -101,5 +101,5 @@ struct AppConfig {
 
 
 #Preview {
-    MainView(timerController: TimerController(settingsModel: SettingsModel()))
+    MainView(controller: TimerController(settingsModel: SettingsModel()))
 }
