@@ -19,7 +19,7 @@ struct MainView: View {
             }
             
             Text(controller.roundBanner).font(.largeTitle).padding(.bottom, -15.0)
-            TimerView(model: controller.timerViewModel, isRestRound: controller.isRestRound)
+            TimerView(controller: controller, model: timerViewModel)
             
             VStack {
                 Spacer()
@@ -54,8 +54,8 @@ struct MainView: View {
     }
     
     func getBackgroundColor() -> Color {
-        if (controller.isRestRound) { return colorScheme == .dark ?  Color.gray.opacity(0.3): Color.gray.opacity(0.2)}
-        if (timerViewModel.active) { return Color.green.opacity(0.2)}
+        if (controller.isRestRound) { return colorScheme == .dark ?  Color.gray.opacity(0.3): Color.gray.opacity(0.1)}
+        if (timerViewModel.active) { return colorScheme == .dark ?  Color.green.opacity(0.2): Color.green.opacity(0.08)}
         return  Color(UIColor.systemBackground)
     }
 }

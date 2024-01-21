@@ -3,15 +3,25 @@ import SwiftUI
 import Combine
 
 struct TimerView : View {
+    @ObservedObject var controller: TimerController
     @ObservedObject var model: TimerViewModel
-    var isRestRound: Bool
     
     var body: some View {
-        Text(model.currentValue.formatted(Duration.TimeFormatStyle.time(pattern: .minuteSecond(padMinuteToLength: 2))))
-            .font(.system(size: 100))
-            .foregroundColor(isRestRound ? .gray : .primary)
-            .padding()
-        
+        VStack {
+            
+            ProgressView(value: calculateProgress()){
+                HStack{
+                    Spacer()
+                    Text(model.currentValue.formatted(Duration.TimeFormatStyle.time(pattern: .minuteSecond(padMinuteToLength: 2))))
+                        .font(.system(size: 100))
+                        .foregroundColor(controller.isRestRound ? .gray : .primary)
+                    Spacer()
+                }
+                
+            }
+            .modifier(ProgressColorModifier(progress: calculateProgress()))
+            .padding(.all, 50)
+        }
         
         Button(action: { model.toggleActive() }) {
             Image(systemName: model.active ? "pause.circle.fill": "play.circle.fill")
@@ -27,6 +37,12 @@ struct TimerView : View {
         .transaction { transaction in
             transaction.disablesAnimations = true
         }
+    }
+    
+    private func calculateProgress() -> Double {
+        let settingsModel = controller.settingsModel
+        let roundDuration = controller.isRestRound ? settingsModel.restDuration : settingsModel.roundDuration
+        return (roundDuration - model.currentValue) / roundDuration
     }
 }
 
