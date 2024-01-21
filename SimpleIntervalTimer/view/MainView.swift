@@ -12,7 +12,10 @@ struct MainView: View {
                 HStack {
                     Spacer()
                     
-                    Button(action: { timerController.reset() }){
+                    Button(action: {
+                        timerController.reset()
+                        SoundService.shared.playSound("play-pause")
+                    }){
                         Image(systemName: "arrow.clockwise")
                             .font(.system(size: 60))
                     }
@@ -35,7 +38,7 @@ struct MainView: View {
                     Spacer()
                 }
             }
-        }
+        }.background(timerController.isRestRound ? Color.gray.opacity(0.1) : Color(UIColor.systemBackground))
     }
 }
 

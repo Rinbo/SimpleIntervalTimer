@@ -3,7 +3,7 @@ import SwiftUI
 import Combine
 
 class TimerUnitViewModel : ObservableObject {
-    private static let PUBLISHING_INTERVAL_MS: Int = 100
+    private static let PUBLISHING_INTERVAL_MS: Int = 1000
     
     @Published var currentValue : Duration
     @Published var active : Bool
@@ -21,7 +21,12 @@ class TimerUnitViewModel : ObservableObject {
     func toggleActive() {
         active = !active
         
-        if (timer == nil) { initTimer() }
+        if (timer == nil) {
+            initTimer()
+            SoundService.shared.playSound("round-start-end")
+        } else {
+            //SoundService.shared.playSound("play-pause")
+        }
     }
     
     func initTimer() {
@@ -41,9 +46,13 @@ class TimerUnitViewModel : ObservableObject {
     }
     
     func completeCountdown() {
+        cancelTimer()
+        onCompletion()
+    }
+    
+    func cancelTimer() {
         timerCancellable?.cancel()
         timer = nil
-        onCompletion()
     }
     
     func reInit(currentValue: Duration, activate: Bool = true)  {

@@ -25,10 +25,12 @@ class TimerController : ObservableObject{
     func next() {
         if currentRound == settingsModel.numberOfRounds {
             print("we are finished")
+            SoundService.shared.playSound("finished")
             reset()
             return;
         }
         
+        SoundService.shared.playSound("round-start-end")
         if !isRestRound && settingsModel.restDuration != Duration.zero {
             isRestRound = true;
             currentTimeUnitViewModel.reInit(currentValue: settingsModel.restDuration)
@@ -49,6 +51,7 @@ class TimerController : ObservableObject{
     }
     
     func reset() {
+        currentTimeUnitViewModel.cancelTimer()
         currentTimeUnitViewModel.reInit(currentValue: settingsModel.roundDuration, activate: false)
         currentRound = 1;
         isRestRound = false

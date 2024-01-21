@@ -8,8 +8,6 @@ struct TimerView : View {
     var body: some View {
         
         VStack {
-            // Consider having a "toast" functionality instead
-            // To display any message
             Spacer()
             if timerController.isRestRound { Text("RESTING") }
         }
@@ -18,7 +16,7 @@ struct TimerView : View {
         
         VStack {
             Text(timerController.description).font(.title)
-            TimerUnitView(model: timerController.currentTimeUnitViewModel)
+            TimerUnitView(model: timerController.currentTimeUnitViewModel, isResting: timerController.isRestRound)
         }
     }
 }
