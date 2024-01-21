@@ -1,8 +1,15 @@
 import SwiftUI
 
 struct MainView: View {
-    @ObservedObject var controller: TimerController
-    @State private var showingSettings = false
+    @ObservedObject private var controller: TimerController
+    @ObservedObject private var timerViewModel: TimerViewModel
+    @State private var showingSettings: Bool = false
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+    
+    init(controller: TimerController) {
+        self.controller = controller
+        self.timerViewModel = controller.timerViewModel
+    }
     
     var body: some View {
         VStack {
@@ -30,6 +37,7 @@ struct MainView: View {
                     Button(action: { showingSettings = true }){
                         Image(systemName: "slider.horizontal.3")
                             .font(.system(size: 60))
+                        
                     }
                     .foregroundColor(.accentColor)
                     .sheet(isPresented: $showingSettings) {
@@ -40,9 +48,15 @@ struct MainView: View {
                     }
                     
                     Spacer()
-                }
+                }.padding(.bottom, 15)
             }
-        }.background(controller.isRestRound ? Color.gray.opacity(0.1) : Color(UIColor.systemBackground))
+        }.background(getBackgroundColor())
+    }
+    
+    func getBackgroundColor() -> Color {
+        if (controller.isRestRound) { return colorScheme == .dark ?  Color.gray.opacity(0.3): Color.gray.opacity(0.2)}
+        if (timerViewModel.active) { return Color.green.opacity(0.2)}
+        return  Color(UIColor.systemBackground)
     }
 }
 

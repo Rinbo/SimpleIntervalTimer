@@ -15,10 +15,15 @@ struct TimerView : View {
         
         Button(action: { model.toggleActive() }) {
             Image(systemName: model.active ? "pause.circle.fill": "play.circle.fill")
+                .frame(width: 100, height: 100)
                 .font(.system(size: 100))
+                .background(Color(UIColor.systemBackground))
+                .scaledToFit()
+            
         }
         .buttonStyle(.borderless)
         .foregroundColor(.green)
+        .clipShape(Circle())
         .transaction { transaction in
             transaction.disablesAnimations = true
         }

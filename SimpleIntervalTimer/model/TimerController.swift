@@ -3,10 +3,10 @@ import SwiftUI
 import Combine
 
 class TimerController : ObservableObject{
+    let timerViewModel : TimerViewModel
     var settingsModel: SettingsModel
     
     @Published var roundBanner: String
-    @ObservedObject var timerViewModel : TimerViewModel
     @Published var currentRound: Int = 1;
     @Published var isRestRound : Bool = false
     
@@ -24,7 +24,6 @@ class TimerController : ObservableObject{
     
     func next() {
         if currentRound == settingsModel.numberOfRounds {
-            print("we are finished")
             SoundService.shared.playSound("finished")
             reset()
             return;
@@ -34,7 +33,6 @@ class TimerController : ObservableObject{
         if !isRestRound && settingsModel.restDuration != Duration.zero {
             isRestRound = true;
             timerViewModel.reInit(currentValue: settingsModel.restDuration)
-            print("We are going to rest round")
             return;
         }
         
@@ -42,7 +40,6 @@ class TimerController : ObservableObject{
         currentRound += 1;
         roundBanner = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
         isRestRound = false
-        print("We are moving to the next round")
     }
     
     func update(settingsModel: SettingsModel) {
