@@ -19,7 +19,6 @@ struct TimerView : View {
                 }
                 
             }
-            .modifier(ProgressColorModifier(progress: calculateProgress()))
             .padding(.all, 50)
         }
         

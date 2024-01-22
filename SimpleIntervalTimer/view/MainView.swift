@@ -15,7 +15,7 @@ struct MainView: View {
         VStack {
             VStack {
                 Spacer()
-                if controller.isRestRound { Text("REST").font(.title) }
+                Text(controller.toast).font(.title).animation(.easeInOut)
             }
             
             Text(controller.roundBanner).font(.largeTitle).padding(.bottom, -15.0)

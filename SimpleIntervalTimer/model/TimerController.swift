@@ -9,6 +9,7 @@ class TimerController : ObservableObject{
     @Published var roundBanner: String
     @Published var currentRound: Int = 1;
     @Published var isRestRound : Bool = false
+    @Published var toast : String = ""
     
     init(settingsModel: SettingsModel){
         self.settingsModel = settingsModel
@@ -25,17 +26,21 @@ class TimerController : ObservableObject{
     func next() {
         if currentRound == settingsModel.numberOfRounds {
             SoundService.shared.playSound("finished")
+            setToast(message: "Exercise Completed")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { self.clearToast() }
             reset()
             return;
         }
         
         SoundService.shared.playSound("round-start-end")
         if !isRestRound && settingsModel.restDuration != Duration.zero {
+            setToast(message: "REST")
             isRestRound = true;
             timerViewModel.reInit(currentValue: settingsModel.restDuration)
             return;
         }
         
+        clearToast()
         timerViewModel.reInit(currentValue: settingsModel.roundDuration)
         currentRound += 1;
         roundBanner = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
@@ -63,5 +68,13 @@ class TimerController : ObservableObject{
         defaults.set(settingsModel.roundDuration.components.seconds, forKey: SettingsModel.ROUND_DURATION_KEY)
         defaults.set(settingsModel.restDuration.components.seconds, forKey: SettingsModel.REST_DURATION_KEY)
         defaults.set(settingsModel.warningDuration.components.seconds, forKey: SettingsModel.WARNING_DURATION_KEY)
+    }
+    
+    private func setToast(message: String) {
+        self.toast = message
+    }
+    
+    private func clearToast() {
+        self.toast = ""
     }
 }
