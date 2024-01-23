@@ -18,17 +18,6 @@ class TimerViewModel : ObservableObject {
         self.onCompletion = onCompletion
     }
     
-    func toggleActive() {
-        active = !active
-        
-        if (timer == nil) {
-            initTimer()
-            SoundService.shared.playSound("round-start-end")
-        } else {
-            //SoundService.shared.playSound("play-pause")
-        }
-    }
-    
     func initTimer() {
         timer = Timer.publish(every: TimeInterval(TimerViewModel.PUBLISHING_INTERVAL_MS) / 1000, on: .main, in: .common)
         timerCancellable = timer?.autoconnect().sink { _ in self.tick() }
@@ -36,18 +25,14 @@ class TimerViewModel : ObservableObject {
     
     func tick() {
         if currentValue <= Duration.zero {
-            completeCountdown()
+            cancelTimer()
+            onCompletion()
             return
         }
         
         if active {
             currentValue -= Duration.milliseconds(TimerViewModel.PUBLISHING_INTERVAL_MS);
         }
-    }
-    
-    func completeCountdown() {
-        cancelTimer()
-        onCompletion()
     }
     
     func cancelTimer() {

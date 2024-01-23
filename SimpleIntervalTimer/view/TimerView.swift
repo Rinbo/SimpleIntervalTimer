@@ -14,7 +14,7 @@ struct TimerView : View {
                     Spacer()
                     Text(model.currentValue.formatted(Duration.TimeFormatStyle.time(pattern: .minuteSecond(padMinuteToLength: 2))))
                         .font(.system(size: 100))
-                        .foregroundColor(controller.isRestRound ? .gray : .primary)
+                        .foregroundColor(controller.state == TimerState.REST ? .gray : .primary)
                     Spacer()
                 }
                 
@@ -22,7 +22,7 @@ struct TimerView : View {
             .padding(.all, 50)
         }
         
-        Button(action: { model.toggleActive() }) {
+        Button(action: { controller.toggleActive() }) {
             Image(systemName: model.active ? "pause.circle.fill": "play.circle.fill")
                 .frame(width: 100, height: 100)
                 .font(.system(size: 100))
@@ -40,7 +40,7 @@ struct TimerView : View {
     
     private func calculateProgress() -> Double {
         let settingsModel = controller.settingsModel
-        let roundDuration = controller.isRestRound ? settingsModel.restDuration : settingsModel.roundDuration
+        let roundDuration = controller.state == TimerState.REST ? settingsModel.restDuration : settingsModel.roundDuration
         return (roundDuration - model.currentValue) / roundDuration
     }
 }

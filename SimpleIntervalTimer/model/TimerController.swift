@@ -2,13 +2,20 @@ import Foundation
 import SwiftUI
 import Combine
 
+enum TimerState {
+    case INITIALIZED
+    case ROUND
+    case REST
+    case COMPLETED
+}
+
 class TimerController : ObservableObject{
     let timerViewModel : TimerViewModel
     var settingsModel: SettingsModel
     
     @Published var roundBanner: String
     @Published var currentRound: Int = 1;
-    @Published var isRestRound : Bool = false
+    @Published var state : TimerState = TimerState.INITIALIZED
     @Published var toast : String = ""
     
     init(settingsModel: SettingsModel){
@@ -16,35 +23,21 @@ class TimerController : ObservableObject{
         self.roundBanner = TimerController.getDescription(1, settingsModel.numberOfRounds)
         
         self.timerViewModel = TimerViewModel(startValue: settingsModel.roundDuration, onCompletion: {})
-        self.timerViewModel.onCompletion = { self.next() }
     }
     
     private static func getDescription(_ currentRound: Int, _ totalRounds: Int) -> String {
         return "Round \(currentRound) of \(totalRounds)"
     }
     
-    func next() {
-        if currentRound == settingsModel.numberOfRounds {
-            SoundService.shared.playSound("finished")
-            setToast(message: "Exercise Completed")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { self.clearToast() }
-            reset()
-            return;
+    func toggleActive() {
+        if (state == TimerState.INITIALIZED) {
+            SoundService.shared.playSound("round-start-end")
+            self.timerViewModel.onCompletion = { self.onRoundComplete() }
+            timerViewModel.initTimer()
+            state = TimerState.ROUND
         }
         
-        SoundService.shared.playSound("round-start-end")
-        if !isRestRound && settingsModel.restDuration != Duration.zero {
-            setToast(message: "REST")
-            isRestRound = true;
-            timerViewModel.reInit(currentValue: settingsModel.restDuration)
-            return;
-        }
-        
-        clearToast()
-        timerViewModel.reInit(currentValue: settingsModel.roundDuration)
-        currentRound += 1;
-        roundBanner = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
-        isRestRound = false
+        timerViewModel.active = !timerViewModel.active
     }
     
     func update(settingsModel: SettingsModel) {
@@ -56,9 +49,35 @@ class TimerController : ObservableObject{
         timerViewModel.cancelTimer()
         timerViewModel.reInit(currentValue: settingsModel.roundDuration, activate: false)
         currentRound = 1;
-        isRestRound = false
         roundBanner = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
         timerViewModel.active = false
+        state = TimerState.INITIALIZED
+    }
+    
+    private func onRoundComplete() {
+        SoundService.shared.playSound("round-start-end")
+        setToast(message: "REST")
+        timerViewModel.reInit(currentValue: settingsModel.restDuration)
+        self.timerViewModel.onCompletion = { self.onRestComplete() }
+        state = TimerState.REST
+    }
+    
+    private func onRestComplete() {
+        SoundService.shared.playSound("round-start-end")
+        clearToast()
+        timerViewModel.reInit(currentValue: settingsModel.roundDuration)
+        currentRound += 1;
+        roundBanner = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
+        self.timerViewModel.onCompletion = { self.currentRound == self.settingsModel.numberOfRounds ? self.onFinished() : self.onRoundComplete()}
+        state = TimerState.ROUND
+    }
+    
+    private func onFinished() {
+        SoundService.shared.playSound("finished")
+        state = TimerState.COMPLETED
+        setToast(message: "Exercise Completed")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { self.clearToast() }
+        reset()
     }
     
     private func saveSettingsModel(_ settingsModel: SettingsModel) {

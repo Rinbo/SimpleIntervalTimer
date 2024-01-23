@@ -53,10 +53,15 @@ struct MainView: View {
         }.background(getBackgroundColor())
     }
     
-    func getBackgroundColor() -> Color {
-        if (controller.isRestRound) { return colorScheme == .dark ?  Color.gray.opacity(0.3): Color.gray.opacity(0.1)}
-        if (timerViewModel.active) { return colorScheme == .dark ?  Color.green.opacity(0.2): Color.green.opacity(0.08)}
-        return  Color(UIColor.systemBackground)
+    private func getBackgroundColor() -> Color {
+        switch (controller.state) {
+        case .REST:
+            return  colorScheme == .dark ?  Color.gray.opacity(0.3) : Color.gray.opacity(0.1)
+        case .ROUND:
+            return colorScheme == .dark ?  Color.green.opacity(0.2) : Color.green.opacity(0.08)
+        case .INITIALIZED, .COMPLETED:
+            return Color(UIColor.systemBackground)
+        }
     }
 }
 
