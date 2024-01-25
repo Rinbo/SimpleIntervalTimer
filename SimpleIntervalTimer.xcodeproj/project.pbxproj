@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B0085272B62FEBB0042CF86 /* finished2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3B0085262B62FEBB0042CF86 /* finished2.mp3 */; };
+		3B0085292B62FED30042CF86 /* round-start-end2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3B0085282B62FED30042CF86 /* round-start-end2.mp3 */; };
 		3B41D2C12B52B12900646D49 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D2C02B52B12900646D49 /* TimerViewModel.swift */; };
 		3B41D2C32B5323E000646D49 /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D2C22B5323E000646D49 /* TimerController.swift */; };
 		3B41D2C52B53243B00646D49 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D2C42B53243B00646D49 /* SettingsModel.swift */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B0085262B62FEBB0042CF86 /* finished2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = finished2.mp3; sourceTree = "<group>"; };
+		3B0085282B62FED30042CF86 /* round-start-end2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "round-start-end2.mp3"; sourceTree = "<group>"; };
 		3B41D2C02B52B12900646D49 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		3B41D2C22B5323E000646D49 /* TimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerController.swift; sourceTree = "<group>"; };
 		3B41D2C42B53243B00646D49 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
@@ -124,6 +128,8 @@
 		3B6205842B5C36AF00E7EC9F /* sound */ = {
 			isa = PBXGroup;
 			children = (
+				3B0085282B62FED30042CF86 /* round-start-end2.mp3 */,
+				3B0085262B62FEBB0042CF86 /* finished2.mp3 */,
 				3B6205922B5C65E200E7EC9F /* finished.mp3 */,
 				3B6205902B5C652700E7EC9F /* round-start-end.mp3 */,
 				3B62058D2B5C452200E7EC9F /* play-pause.mp3 */,
@@ -296,8 +302,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B0085272B62FEBB0042CF86 /* finished2.mp3 in Resources */,
 				3B7FEF0A2B4ACCBF00B5890B /* Preview Assets.xcassets in Resources */,
 				3B6205912B5C652700E7EC9F /* round-start-end.mp3 in Resources */,
+				3B0085292B62FED30042CF86 /* round-start-end2.mp3 in Resources */,
 				3B62058F2B5C452200E7EC9F /* play-pause.mp3 in Resources */,
 				3B62058E2B5C452200E7EC9F /* reset.mp3 in Resources */,
 				3B6205932B5C65E200E7EC9F /* finished.mp3 in Resources */,
