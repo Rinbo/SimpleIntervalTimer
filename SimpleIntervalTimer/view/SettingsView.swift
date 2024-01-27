@@ -48,7 +48,7 @@ struct SettingsView: View {
             VStack {
                 Text("Rounds").font(.title3)
                 Picker("Rest", selection: $selectedNumberOfRounds) {
-                    ForEach(1...15, id: \.self) { number in
+                    ForEach(1...20, id: \.self) { number in
                         Text("\(number)").tag(number)
                     }
                 }
@@ -68,7 +68,7 @@ struct SettingsView: View {
             }
         }.padding(20)
         
-        Text("End of round alert").font(.title3).padding(.top, 35)
+        Text("End of round alert").font(.title3).padding(.top, 30)
         Picker("Rest", selection: $selectedWarningDuration) {
             ForEach(warningDurations) { option in
                 Text(option.label).tag(option.duration)
@@ -76,6 +76,7 @@ struct SettingsView: View {
         }
         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
         .pickerStyle(PalettePickerStyle())
+        .clipped()
         
         Spacer()
         Button(action: {
@@ -117,15 +118,34 @@ struct AppConfig {
         Duration.seconds(10),
         Duration.seconds(15),
         Duration.seconds(30),
-        Duration.seconds(60)
+        Duration.seconds(60),
+        Duration.seconds(90),
+        Duration.seconds(120),
+        Duration.seconds(180),
+        Duration.seconds(300)
     ]
     
     static let roundDurations: [Duration] = [
         Duration.seconds(5),
+        Duration.seconds(10),
         Duration.seconds(15),
         Duration.seconds(30),
+        Duration.seconds(45),
         Duration.seconds(60),
-        Duration.seconds(90)
+        Duration.seconds(90),
+        Duration.seconds(120),
+        Duration.seconds(180),
+        Duration.seconds(240),
+        Duration.seconds(300),
+        Duration.seconds(360),
+        Duration.seconds(420),
+        Duration.seconds(480),
+        Duration.seconds(540),
+        Duration.seconds(600),
+        Duration.seconds(900),
+        Duration.seconds(1200),
+        Duration.seconds(1800),
+        Duration.seconds(3600)
     ]
     
     static let warningDurations: [Duration] = [

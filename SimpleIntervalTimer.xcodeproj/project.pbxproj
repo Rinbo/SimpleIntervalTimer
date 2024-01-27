@@ -25,6 +25,7 @@
 		3BF528692B65446A00BF47BC /* ding-ding-ding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3BF528662B65446A00BF47BC /* ding-ding-ding.mp3 */; };
 		3BF5286A2B65446A00BF47BC /* ding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3BF528672B65446A00BF47BC /* ding.mp3 */; };
 		3BF5286C2B65470800BF47BC /* clap-clap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3BF5286B2B65470800BF47BC /* clap-clap.mp3 */; };
+		3BF5286E2B65637A00BF47BC /* TimerControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5286D2B65637A00BF47BC /* TimerControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		3BF528662B65446A00BF47BC /* ding-ding-ding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ding-ding-ding.mp3"; sourceTree = "<group>"; };
 		3BF528672B65446A00BF47BC /* ding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ding.mp3; sourceTree = "<group>"; };
 		3BF5286B2B65470800BF47BC /* clap-clap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "clap-clap.mp3"; sourceTree = "<group>"; };
+		3BF5286D2B65637A00BF47BC /* TimerControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				3B7FEF132B4ACCBF00B5890B /* SimpleIntervalTimerTests.swift */,
+				3BF5286D2B65637A00BF47BC /* TimerControllerTests.swift */,
 			);
 			path = SimpleIntervalTimerTests;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B7FEF142B4ACCBF00B5890B /* SimpleIntervalTimerTests.swift in Sources */,
+				3BF5286E2B65637A00BF47BC /* TimerControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

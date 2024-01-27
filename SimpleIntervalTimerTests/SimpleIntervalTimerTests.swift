@@ -1,10 +1,3 @@
-//
-//  SimpleIntervalTimerTests.swift
-//  SimpleIntervalTimerTests
-//
-//  Created by Robin Börjesson on 2024-01-07.
-//
-
 import XCTest
 @testable import SimpleIntervalTimer
 

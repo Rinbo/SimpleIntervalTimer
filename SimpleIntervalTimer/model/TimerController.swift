@@ -28,6 +28,14 @@ class TimerController : ObservableObject{
         self.soundService = SoundService()
     }
     
+    init(settingsModel: SettingsModel, timerViewModel: TimerViewModel, soundService: SoundService) {
+        self.settingsModel = settingsModel
+        self.roundBanner = TimerController.getDescription(1, settingsModel.numberOfRounds)
+        
+        self.timerViewModel = timerViewModel
+        self.soundService = soundService
+    }
+    
     private static func getDescription(_ currentRound: Int, _ totalRounds: Int) -> String {
         return "Round \(currentRound) of \(totalRounds)"
     }
