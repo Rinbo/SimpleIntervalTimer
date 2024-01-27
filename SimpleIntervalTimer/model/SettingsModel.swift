@@ -19,7 +19,7 @@ struct SettingsModel {
     init(numberOfRounds: Int = 2, 
          roundDuration: Duration = Duration.seconds(5),
          restDuration: Duration = Duration.seconds(5),
-         warningDuration: Duration = Duration.seconds(0)) {
+         warningDuration: Duration = Duration.seconds(10)) {
         self.numberOfRounds = numberOfRounds
         self.roundDuration = roundDuration
         self.restDuration = restDuration

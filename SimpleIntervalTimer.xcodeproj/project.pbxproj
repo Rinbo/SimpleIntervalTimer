@@ -7,17 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B0085272B62FEBB0042CF86 /* finished2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3B0085262B62FEBB0042CF86 /* finished2.mp3 */; };
-		3B0085292B62FED30042CF86 /* round-start-end2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3B0085282B62FED30042CF86 /* round-start-end2.mp3 */; };
 		3B41D2C12B52B12900646D49 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D2C02B52B12900646D49 /* TimerViewModel.swift */; };
 		3B41D2C32B5323E000646D49 /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D2C22B5323E000646D49 /* TimerController.swift */; };
 		3B41D2C52B53243B00646D49 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D2C42B53243B00646D49 /* SettingsModel.swift */; };
 		3B41D2C72B532BBC00646D49 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D2C62B532BBC00646D49 /* TimerView.swift */; };
 		3B6205862B5C36CC00E7EC9F /* SoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6205852B5C36CC00E7EC9F /* SoundService.swift */; };
-		3B62058E2B5C452200E7EC9F /* reset.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3B62058C2B5C452200E7EC9F /* reset.mp3 */; };
-		3B62058F2B5C452200E7EC9F /* play-pause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3B62058D2B5C452200E7EC9F /* play-pause.mp3 */; };
-		3B6205912B5C652700E7EC9F /* round-start-end.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3B6205902B5C652700E7EC9F /* round-start-end.mp3 */; };
-		3B6205932B5C65E200E7EC9F /* finished.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3B6205922B5C65E200E7EC9F /* finished.mp3 */; };
 		3B68012E2B5D9F4400B620D0 /* ProgressColorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68012D2B5D9F4400B620D0 /* ProgressColorModifier.swift */; };
 		3B7E1F812B5478B300B102F9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7E1F802B5478B300B102F9 /* SettingsView.swift */; };
 		3B7FEF032B4ACCBE00B5890B /* SimpleIntervalTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF022B4ACCBE00B5890B /* SimpleIntervalTimerApp.swift */; };
@@ -27,6 +21,10 @@
 		3B7FEF142B4ACCBF00B5890B /* SimpleIntervalTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF132B4ACCBF00B5890B /* SimpleIntervalTimerTests.swift */; };
 		3B7FEF1E2B4ACCBF00B5890B /* SimpleIntervalTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF1D2B4ACCBF00B5890B /* SimpleIntervalTimerUITests.swift */; };
 		3B7FEF202B4ACCBF00B5890B /* SimpleIntervalTimerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF1F2B4ACCBF00B5890B /* SimpleIntervalTimerUITestsLaunchTests.swift */; };
+		3BF528682B65446A00BF47BC /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3BF528652B65446A00BF47BC /* beep.mp3 */; };
+		3BF528692B65446A00BF47BC /* ding-ding-ding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3BF528662B65446A00BF47BC /* ding-ding-ding.mp3 */; };
+		3BF5286A2B65446A00BF47BC /* ding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3BF528672B65446A00BF47BC /* ding.mp3 */; };
+		3BF5286C2B65470800BF47BC /* clap-clap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3BF5286B2B65470800BF47BC /* clap-clap.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,17 +45,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3B0085262B62FEBB0042CF86 /* finished2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = finished2.mp3; sourceTree = "<group>"; };
-		3B0085282B62FED30042CF86 /* round-start-end2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "round-start-end2.mp3"; sourceTree = "<group>"; };
 		3B41D2C02B52B12900646D49 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		3B41D2C22B5323E000646D49 /* TimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerController.swift; sourceTree = "<group>"; };
 		3B41D2C42B53243B00646D49 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		3B41D2C62B532BBC00646D49 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		3B6205852B5C36CC00E7EC9F /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
-		3B62058C2B5C452200E7EC9F /* reset.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = reset.mp3; sourceTree = "<group>"; };
-		3B62058D2B5C452200E7EC9F /* play-pause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "play-pause.mp3"; sourceTree = "<group>"; };
-		3B6205902B5C652700E7EC9F /* round-start-end.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "round-start-end.mp3"; sourceTree = "<group>"; };
-		3B6205922B5C65E200E7EC9F /* finished.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = finished.mp3; sourceTree = "<group>"; };
 		3B68012D2B5D9F4400B620D0 /* ProgressColorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressColorModifier.swift; sourceTree = "<group>"; };
 		3B7E1F802B5478B300B102F9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3B7FEEFF2B4ACCBE00B5890B /* SimpleIntervalTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleIntervalTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +62,10 @@
 		3B7FEF192B4ACCBF00B5890B /* SimpleIntervalTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleIntervalTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7FEF1D2B4ACCBF00B5890B /* SimpleIntervalTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleIntervalTimerUITests.swift; sourceTree = "<group>"; };
 		3B7FEF1F2B4ACCBF00B5890B /* SimpleIntervalTimerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleIntervalTimerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3BF528652B65446A00BF47BC /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
+		3BF528662B65446A00BF47BC /* ding-ding-ding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ding-ding-ding.mp3"; sourceTree = "<group>"; };
+		3BF528672B65446A00BF47BC /* ding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ding.mp3; sourceTree = "<group>"; };
+		3BF5286B2B65470800BF47BC /* clap-clap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "clap-clap.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,12 +124,10 @@
 		3B6205842B5C36AF00E7EC9F /* sound */ = {
 			isa = PBXGroup;
 			children = (
-				3B0085282B62FED30042CF86 /* round-start-end2.mp3 */,
-				3B0085262B62FEBB0042CF86 /* finished2.mp3 */,
-				3B6205922B5C65E200E7EC9F /* finished.mp3 */,
-				3B6205902B5C652700E7EC9F /* round-start-end.mp3 */,
-				3B62058D2B5C452200E7EC9F /* play-pause.mp3 */,
-				3B62058C2B5C452200E7EC9F /* reset.mp3 */,
+				3BF5286B2B65470800BF47BC /* clap-clap.mp3 */,
+				3BF528652B65446A00BF47BC /* beep.mp3 */,
+				3BF528662B65446A00BF47BC /* ding-ding-ding.mp3 */,
+				3BF528672B65446A00BF47BC /* ding.mp3 */,
 				3B6205852B5C36CC00E7EC9F /* SoundService.swift */,
 			);
 			path = sound;
@@ -302,14 +296,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B0085272B62FEBB0042CF86 /* finished2.mp3 in Resources */,
+				3BF528692B65446A00BF47BC /* ding-ding-ding.mp3 in Resources */,
+				3BF5286A2B65446A00BF47BC /* ding.mp3 in Resources */,
 				3B7FEF0A2B4ACCBF00B5890B /* Preview Assets.xcassets in Resources */,
-				3B6205912B5C652700E7EC9F /* round-start-end.mp3 in Resources */,
-				3B0085292B62FED30042CF86 /* round-start-end2.mp3 in Resources */,
-				3B62058F2B5C452200E7EC9F /* play-pause.mp3 in Resources */,
-				3B62058E2B5C452200E7EC9F /* reset.mp3 in Resources */,
-				3B6205932B5C65E200E7EC9F /* finished.mp3 in Resources */,
 				3B7FEF072B4ACCBF00B5890B /* Assets.xcassets in Resources */,
+				3BF5286C2B65470800BF47BC /* clap-clap.mp3 in Resources */,
+				3BF528682B65446A00BF47BC /* beep.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

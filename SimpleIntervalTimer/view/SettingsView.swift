@@ -6,6 +6,8 @@ struct SettingsView: View {
     @State var selectedRestDuration: Duration
     @State var selectedRoundDuration: Duration
     @State var selectedNumberOfRounds: Int
+    @State var selectedWarningDuration: Duration
+    
     private let callback: (_ settingsModel: SettingsModel) -> Void
     
     private var restDurations: [DurationOption] {
@@ -16,11 +18,16 @@ struct SettingsView: View {
         AppConfig.roundDurations.map { DurationOption(duration: $0) }
     }
     
+    private var warningDurations: [WarningOption] {
+        AppConfig.warningDurations.map { WarningOption(duration: $0) }
+    }
+    
     init(isPresented: Binding<Bool>, settingsModel: SettingsModel, callback: @escaping (_ settingsModel: SettingsModel) -> Void) {
         self._isPresented = isPresented
         self.selectedRestDuration = settingsModel.restDuration
         self.selectedRoundDuration = settingsModel.roundDuration
         self.selectedNumberOfRounds = settingsModel.numberOfRounds
+        self.selectedWarningDuration = settingsModel.warningDuration
         self.callback = callback
     }
     
@@ -60,10 +67,24 @@ struct SettingsView: View {
                 .clipped()
             }
         }.padding(20)
+        
+        Text("End of round alert").font(.title3).padding(.top, 35)
+        Picker("Rest", selection: $selectedWarningDuration) {
+            ForEach(warningDurations) { option in
+                Text(option.label).tag(option.duration)
+            }
+        }
+        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+        .pickerStyle(PalettePickerStyle())
+        
         Spacer()
         Button(action: {
             isPresented = false
-            callback(SettingsModel(numberOfRounds: selectedNumberOfRounds, roundDuration: selectedRoundDuration, restDuration: selectedRestDuration))
+            callback(SettingsModel(
+                numberOfRounds: selectedNumberOfRounds,
+                roundDuration: selectedRoundDuration,
+                restDuration: selectedRestDuration,
+                warningDuration: selectedWarningDuration))
         }){
             Image(systemName: "checkmark")
                 .font(.system(size: 60))
@@ -77,6 +98,15 @@ struct SettingsView: View {
 struct DurationOption: Identifiable {
     let duration: Duration
     var label: String { duration.formatted(Duration.TimeFormatStyle.time(pattern: .minuteSecond(padMinuteToLength: 2))) }
+    var id: String { label }
+}
+
+struct WarningOption: Identifiable {
+    let duration: Duration
+    var label: String {
+        if duration > Duration.zero { return "\(duration.components.seconds)s"}
+        return "Off"
+    }
     var id: String { label }
 }
 
@@ -96,6 +126,12 @@ struct AppConfig {
         Duration.seconds(30),
         Duration.seconds(60),
         Duration.seconds(90)
+    ]
+    
+    static let warningDurations: [Duration] = [
+        Duration.seconds(0),
+        Duration.seconds(10),
+        Duration.seconds(30),
     ]
 }
 

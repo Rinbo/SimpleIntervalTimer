@@ -26,10 +26,8 @@ struct MainView: View {
                 HStack {
                     Spacer()
                     
-                    Button(action: {
-                        controller.reset()
-                        SoundService.shared.playSound("play-pause")
-                    }){ Image(systemName: "arrow.clockwise").font(.system(size: 60)) }
+                    Button(action: { controller.reset() }){
+                        Image(systemName: "arrow.clockwise").font(.system(size: 60)) }
                         .foregroundColor(.accentColor)
                     
                     Spacer()
@@ -43,7 +41,6 @@ struct MainView: View {
                     .sheet(isPresented: $showingSettings) {
                         SettingsView(isPresented: $showingSettings, settingsModel: controller.settingsModel, callback: {(settingsModel: SettingsModel) in
                             controller.update(settingsModel: settingsModel)
-                            controller.reset();
                         })
                     }
                     
@@ -56,9 +53,9 @@ struct MainView: View {
     private func getBackgroundColor() -> Color {
         switch (controller.state) {
         case .REST:
-            return  colorScheme == .dark ?  Color.gray.opacity(0.3) : Color.gray.opacity(0.1)
+            return Color.gray.opacity(0.3)
         case .ROUND:
-            return colorScheme == .dark ?  Color.green.opacity(0.2) : Color.green.opacity(0.08)
+            return colorScheme == .dark ?  Color.green.opacity(0.2) : Color.green.opacity(0.1)
         case .INITIALIZED, .COMPLETED:
             return Color(UIColor.systemBackground)
         }
