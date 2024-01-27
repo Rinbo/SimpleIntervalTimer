@@ -2,29 +2,34 @@ import AVFoundation
 import Foundation
 
 class SoundService {
-    static let shared: SoundService = SoundService()
-    private var audioPlayer: AVAudioPlayer?
+    private var beepPlayer: AVAudioPlayer?
+    private var dingPlayer: AVAudioPlayer?
+    private var dingDingPlayer: AVAudioPlayer?
+    private var clapPlayer: AVAudioPlayer?
     
-    private init() { }
-    
-    func playSound(_ named: String) {
-        guard let url = Bundle.main.url(forResource: named, withExtension: "mp3") else {
-            print("url for \(named) not found")
-            return
-        }
-        
-        
-        if let player = audioPlayer, player.url == url {
-            player.play()
-            return
-        }
+    init() {
+        let clapUrl = Bundle.main.url(forResource: "clap-clap", withExtension: "mp3")
+        let beepUrl = Bundle.main.url(forResource: "beep", withExtension: "mp3")
+        let dingDingUrl = Bundle.main.url(forResource: "ding-ding-ding", withExtension: "mp3")
+        let dingUrl = Bundle.main.url(forResource: "ding", withExtension: "mp3")
         
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            clapPlayer = try AVAudioPlayer(contentsOf: clapUrl!)
+            beepPlayer = try AVAudioPlayer(contentsOf: beepUrl!)
+            dingDingPlayer = try AVAudioPlayer(contentsOf: dingDingUrl!)
+            dingPlayer = try AVAudioPlayer(contentsOf: dingUrl!)
+            
+            clapPlayer?.prepareToPlay()
+            beepPlayer?.prepareToPlay()
+            dingDingPlayer?.prepareToPlay()
+            dingDingPlayer?.prepareToPlay()
         } catch {
-            print("Failed to load the sound: \(error)")
+            print("Failed to load player: \(error)")
         }
-        
-        audioPlayer?.play()
     }
+    
+    func playClap() { clapPlayer?.play()}
+    func playBeep() { beepPlayer?.play()}
+    func playDingDing() { dingDingPlayer?.play()}
+    func playDing() { dingPlayer?.play()}
 }

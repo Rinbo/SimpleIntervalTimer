@@ -18,11 +18,14 @@ class TimerController : ObservableObject{
     @Published var state : TimerState = TimerState.INITIALIZED
     @Published var toast : String = ""
     
-    init(settingsModel: SettingsModel){
+    private let soundService: SoundService
+    
+    init(settingsModel: SettingsModel) {
         self.settingsModel = settingsModel
         self.roundBanner = TimerController.getDescription(1, settingsModel.numberOfRounds)
         
         self.timerViewModel = TimerViewModel(startValue: settingsModel.roundDuration, onTick: {value in }, onCompletion: {})
+        self.soundService = SoundService()
     }
     
     private static func getDescription(_ currentRound: Int, _ totalRounds: Int) -> String {
@@ -31,7 +34,7 @@ class TimerController : ObservableObject{
     
     func toggleActive() {
         if (state == TimerState.INITIALIZED) {
-            SoundService.shared.playSound("ding")
+            soundService.playDing()
             self.timerViewModel.onCompletion = { self.onRoundComplete() }
             self.timerViewModel.onTick = {value in self.onTick(value: value)}
             timerViewModel.initTimer()
@@ -48,7 +51,7 @@ class TimerController : ObservableObject{
     }
     
     func reset() {
-        SoundService.shared.playSound("beep")
+        soundService.playBeep()
         resetTimer()
     }
     
@@ -65,7 +68,7 @@ class TimerController : ObservableObject{
         if state == TimerState.ROUND 
             && settingsModel.warningDuration == value
             && settingsModel.warningDuration > Duration.zero
-        { SoundService.shared.playSound("clap-clap") }
+        { soundService.playClap() }
         
     }
     
@@ -75,7 +78,7 @@ class TimerController : ObservableObject{
             return
         }
         
-        SoundService.shared.playSound("ding")
+        soundService.playDing()
         setToast(message: "REST")
         timerViewModel.reInit(currentValue: settingsModel.restDuration)
         self.timerViewModel.onCompletion = { self.onRestComplete() }
@@ -83,7 +86,7 @@ class TimerController : ObservableObject{
     }
     
     private func onRestComplete() {
-        SoundService.shared.playSound("ding")
+        soundService.playDing()
         clearToast()
         timerViewModel.reInit(currentValue: settingsModel.roundDuration)
         currentRound += 1;
@@ -93,7 +96,7 @@ class TimerController : ObservableObject{
     }
     
     private func onFinished() {
-        SoundService.shared.playSound("ding-ding-ding")
+        soundService.playDingDing()
         state = TimerState.COMPLETED
         setToast(message: "Exercise Completed")
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { self.clearToast() }
