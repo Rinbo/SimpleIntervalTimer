@@ -15,6 +15,7 @@ struct TimerView : View {
                     Text(model.currentValue.formatted(Duration.TimeFormatStyle.time(pattern: .minuteSecond(padMinuteToLength: 2))))
                         .font(.system(size: 100))
                         .foregroundColor(controller.state == TimerState.REST ? .gray : .primary)
+                        .accessibilityIdentifier("TimerValue")
                     Spacer()
                 }
                 
@@ -28,6 +29,7 @@ struct TimerView : View {
                 .font(.system(size: 100))
                 .background(Color(UIColor.systemBackground))
                 .scaledToFit()
+                .accessibilityIdentifier("PlayPauseButton")
             
         }
         .buttonStyle(.borderless)

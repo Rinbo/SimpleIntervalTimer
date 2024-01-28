@@ -18,7 +18,11 @@ struct MainView: View {
                 Text(controller.toast).font(.title).animation(.easeInOut)
             }
             
-            Text(controller.roundBanner).font(.largeTitle).padding(.bottom, -15.0)
+            Text(controller.roundBanner)
+                .font(.largeTitle).padding(.bottom, -15.0)
+                .accessibilityIdentifier("RoundInfoBanner")
+            
+            
             TimerView(controller: controller, model: timerViewModel)
             
             VStack {
@@ -27,17 +31,20 @@ struct MainView: View {
                     Spacer()
                     
                     Button(action: { controller.reset() }){
-                        Image(systemName: "arrow.clockwise").font(.system(size: 60)) }
+                        Image(systemName: "arrow.clockwise")
+                        .font(.system(size: 50)) }
                         .foregroundColor(.accentColor)
+                        .accessibilityIdentifier("ResetButton")
                     
                     Spacer()
                     
                     Button(action: { showingSettings = true }){
                         Image(systemName: "slider.horizontal.3")
-                            .font(.system(size: 60))
+                            .font(.system(size: 50))
                         
                     }
                     .foregroundColor(.accentColor)
+                    .accessibilityIdentifier("SettingsButton")
                     .sheet(isPresented: $showingSettings) {
                         SettingsView(isPresented: $showingSettings, settingsModel: controller.settingsModel, callback: {(settingsModel: SettingsModel) in
                             controller.update(settingsModel: settingsModel)
@@ -45,9 +52,11 @@ struct MainView: View {
                     }
                     
                     Spacer()
-                }.padding(.bottom, 15)
+                }
+                .padding(.bottom, 15)
             }
-        }.background(getBackgroundColor())
+        }
+        .background(getBackgroundColor())
     }
     
     private func getBackgroundColor() -> Color {

@@ -77,11 +77,10 @@ class TimerController : ObservableObject{
             && settingsModel.warningDuration == value
             && settingsModel.warningDuration > Duration.zero
         { soundService.playClap() }
-        
     }
     
     private func onRoundComplete() {
-        if settingsModel.restDuration == .zero {
+        if settingsModel.restDuration == Duration.zero {
             onRestComplete()
             return
         }

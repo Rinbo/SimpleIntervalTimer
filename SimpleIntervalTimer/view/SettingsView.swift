@@ -35,41 +35,59 @@ struct SettingsView: View {
         Spacer()
         HStack {
             VStack {
-                Text("Round Duration").font(.title3).multilineTextAlignment(.center)
-                Picker("Rest", selection: $selectedRoundDuration) {
+                Text("Round Duration")
+                    .font(.title3)
+                    .multilineTextAlignment(.center)
+                    .accessibilityIdentifier("RoundDurationTitle")
+                
+                Picker("Round Duration", selection: $selectedRoundDuration) {
                     ForEach(roundDurations) { option in
                         Text(option.label).tag(option.duration)
                     }
                 }
                 .pickerStyle(WheelPickerStyle())
                 .clipped()
+                .accessibilityIdentifier("RoundDurationPicker")
             }
             
             VStack {
-                Text("Rounds").font(.title3)
-                Picker("Rest", selection: $selectedNumberOfRounds) {
+                Text("Rounds")
+                    .font(.title3)
+                    .accessibilityIdentifier("NumberOfRoundsTitle")
+                
+                Picker("Rounds", selection: $selectedNumberOfRounds) {
                     ForEach(1...20, id: \.self) { number in
                         Text("\(number)").tag(number)
                     }
                 }
                 .pickerStyle(WheelPickerStyle())
                 .clipped()
+                .accessibilityIdentifier("NumberOfRoundsPicker")
             }
             
             VStack {
-                Text("Rest Duration").font(.title3).multilineTextAlignment(.center)
-                Picker("Rest", selection: $selectedRestDuration) {
+                Text("Rest Duration")
+                    .font(.title3)
+                    .multilineTextAlignment(.center)
+                    .accessibilityIdentifier("RestDurationTitle")
+                
+                Picker("Rest Duration", selection: $selectedRestDuration) {
                     ForEach(restDurations) { option in
                         Text(option.label).tag(option.duration)
                     }
                 }
                 .pickerStyle(WheelPickerStyle())
                 .clipped()
+                .accessibilityIdentifier("RestDurationPicker")
             }
         }.padding(20)
         
-        Text("End of round alert").font(.title3).padding(.top, 30)
-        Picker("Rest", selection: $selectedWarningDuration) {
+        Text("End of round alert")
+            .font(.title3)
+            .padding(.top, 30)
+            .accessibilityIdentifier("EndOfRoundAlertTitle")
+        
+        Picker("End of round alert", selection: $selectedWarningDuration) {
             ForEach(warningDurations) { option in
                 Text(option.label).tag(option.duration)
             }
@@ -77,6 +95,7 @@ struct SettingsView: View {
         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
         .pickerStyle(PalettePickerStyle())
         .clipped()
+        .accessibilityIdentifier("EndOfRoundAlertPicker")
         
         Spacer()
         Button(action: {
@@ -88,11 +107,12 @@ struct SettingsView: View {
                 warningDuration: selectedWarningDuration))
         }){
             Image(systemName: "checkmark")
-                .font(.system(size: 60))
+                .font(.system(size: 50))
         }
         .foregroundColor(.green)
         .font(.largeTitle)
         .padding(20)
+        .accessibilityIdentifier("SaveSettingsButton")
     }
 }
 
