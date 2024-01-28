@@ -20,6 +20,7 @@
 		3B7FEF0A2B4ACCBF00B5890B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FEF092B4ACCBF00B5890B /* Preview Assets.xcassets */; };
 		3B7FEF1E2B4ACCBF00B5890B /* SimpleIntervalTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF1D2B4ACCBF00B5890B /* SimpleIntervalTimerUITests.swift */; };
 		3B7FEF202B4ACCBF00B5890B /* SimpleIntervalTimerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF1F2B4ACCBF00B5890B /* SimpleIntervalTimerUITestsLaunchTests.swift */; };
+		3BAF19FF2B6688D200853D7A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BAF19FE2B6688D200853D7A /* Launch Screen.storyboard */; };
 		3BF528682B65446A00BF47BC /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3BF528652B65446A00BF47BC /* beep.mp3 */; };
 		3BF528692B65446A00BF47BC /* ding-ding-ding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3BF528662B65446A00BF47BC /* ding-ding-ding.mp3 */; };
 		3BF5286A2B65446A00BF47BC /* ding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3BF528672B65446A00BF47BC /* ding.mp3 */; };
@@ -61,6 +62,7 @@
 		3B7FEF192B4ACCBF00B5890B /* SimpleIntervalTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleIntervalTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7FEF1D2B4ACCBF00B5890B /* SimpleIntervalTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleIntervalTimerUITests.swift; sourceTree = "<group>"; };
 		3B7FEF1F2B4ACCBF00B5890B /* SimpleIntervalTimerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleIntervalTimerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3BAF19FE2B6688D200853D7A /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3BF528652B65446A00BF47BC /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
 		3BF528662B65446A00BF47BC /* ding-ding-ding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ding-ding-ding.mp3"; sourceTree = "<group>"; };
 		3BF528672B65446A00BF47BC /* ding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ding.mp3; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 		3B7FEEF62B4ACCBE00B5890B = {
 			isa = PBXGroup;
 			children = (
+				3BAF19FE2B6688D200853D7A /* Launch Screen.storyboard */,
 				3B7FEF012B4ACCBE00B5890B /* SimpleIntervalTimer */,
 				3B7FEF122B4ACCBF00B5890B /* SimpleIntervalTimerTests */,
 				3B7FEF1C2B4ACCBF00B5890B /* SimpleIntervalTimerUITests */,
@@ -302,6 +305,7 @@
 				3B7FEF072B4ACCBF00B5890B /* Assets.xcassets in Resources */,
 				3BF5286C2B65470800BF47BC /* clap-clap.mp3 in Resources */,
 				3BF528682B65446A00BF47BC /* beep.mp3 in Resources */,
+				3BAF19FF2B6688D200853D7A /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,14 +499,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleIntervalTimer/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Interval Timer";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -510,7 +518,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.borjesson.SimpleIntervalTimer;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.borjessons.SimpleIntervalTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -523,14 +531,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleIntervalTimer/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Interval Timer";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -538,7 +550,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.borjesson.SimpleIntervalTimer;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.borjessons.SimpleIntervalTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
