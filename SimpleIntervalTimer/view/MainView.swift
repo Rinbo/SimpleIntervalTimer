@@ -29,12 +29,11 @@ struct MainView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    
                     Button(action: { controller.reset() }){
                         Image(systemName: "arrow.clockwise")
                         .font(.system(size: 50)) }
-                        .foregroundColor(.accentColor)
-                        .accessibilityIdentifier("ResetButton")
+                    .foregroundColor(.accentColor)
+                    .accessibilityIdentifier("ResetButton")
                     
                     Spacer()
                     
@@ -53,7 +52,7 @@ struct MainView: View {
                     
                     Spacer()
                 }
-                .padding(.bottom, 15)
+                .padding(.bottom, 28)
             }
         }
         .background(getBackgroundColor())

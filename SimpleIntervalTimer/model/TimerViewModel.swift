@@ -6,7 +6,11 @@ class TimerViewModel : ObservableObject {
     private static let PUBLISHING_INTERVAL_MS: Int = 100
     
     @Published var currentValue : Duration
-    @Published var active : Bool
+    @Published var active : Bool {
+        didSet {
+            UIApplication.shared.isIdleTimerDisabled = active
+        }
+    }
     
     var onTick: (_ value : Duration) -> Void
     var onCompletion: () -> Void
