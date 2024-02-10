@@ -7,16 +7,13 @@ struct TimerView : View {
     @ObservedObject var model: TimerViewModel
     
     var body: some View {
-        VStack {
-            
+        VStack() {
             ProgressView(value: calculateProgress()){
-                HStack{
-                    Text(model.currentValue.formatted(Duration.TimeFormatStyle.time(pattern: .minuteSecond(padMinuteToLength: 2))))
-                        .font(.system(size: 100))
-                        .foregroundColor(controller.state == TimerState.REST ? .gray : .primary)
-                        .accessibilityIdentifier("TimerValue")
-                }
-                
+                Text(model.currentValue.formatted(Duration.TimeFormatStyle.time(pattern: .minuteSecond(padMinuteToLength: 2))))
+                    .font(.system(size: 100))
+                    .foregroundColor(controller.state == TimerState.REST ? .gray : .primary)
+                    .accessibilityIdentifier("TimerValue")
+                    .frame(maxWidth: .infinity, alignment: .center)
             }
             .padding(.all, 50)
         }

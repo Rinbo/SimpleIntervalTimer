@@ -68,6 +68,7 @@ class TimerController : ObservableObject{
         timerViewModel.reInit(currentValue: settingsModel.roundDuration, activate: false)
         currentRound = 1;
         roundBanner = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
+        clearToast()
         timerViewModel.active = false
         state = TimerState.INITIALIZED
     }
