@@ -16,13 +16,17 @@ class SoundService {
         do {
             clapPlayer = try AVAudioPlayer(contentsOf: clapUrl!)
             beepPlayer = try AVAudioPlayer(contentsOf: beepUrl!)
-            dingDingPlayer = try AVAudioPlayer(contentsOf: dingDingUrl!)
             dingPlayer = try AVAudioPlayer(contentsOf: dingUrl!)
+            dingDingPlayer = try AVAudioPlayer(contentsOf: dingDingUrl!)
             
             clapPlayer?.prepareToPlay()
+            clapPlayer?.setVolume(0.9, fadeDuration: 0)
             beepPlayer?.prepareToPlay()
+            beepPlayer?.setVolume(0.9, fadeDuration: 0)
+            dingPlayer?.prepareToPlay()
+            dingPlayer?.setVolume(0.9, fadeDuration: 0)
             dingDingPlayer?.prepareToPlay()
-            dingDingPlayer?.prepareToPlay()
+            dingDingPlayer?.setVolume(0.9, fadeDuration: 0)
         } catch {
             print("Failed to load player: \(error)")
         }
