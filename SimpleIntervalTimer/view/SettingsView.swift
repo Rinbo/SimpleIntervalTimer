@@ -80,7 +80,7 @@ struct SettingsView: View {
                 .clipped()
                 .accessibilityIdentifier("RestDurationPicker")
             }
-        }.padding(20)
+        }.padding(15)
         
         Text("End of round alert")
             .font(.title3)
@@ -92,6 +92,7 @@ struct SettingsView: View {
                 Text(option.label).tag(option.duration)
             }
         }
+        .padding(.horizontal, 15.0)
         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
         .pickerStyle(PalettePickerStyle())
         .clipped()

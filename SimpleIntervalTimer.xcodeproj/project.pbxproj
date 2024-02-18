@@ -20,6 +20,7 @@
 		3B7FEF0A2B4ACCBF00B5890B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FEF092B4ACCBF00B5890B /* Preview Assets.xcassets */; };
 		3B7FEF1E2B4ACCBF00B5890B /* SimpleIntervalTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF1D2B4ACCBF00B5890B /* SimpleIntervalTimerUITests.swift */; };
 		3B7FEF202B4ACCBF00B5890B /* SimpleIntervalTimerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FEF1F2B4ACCBF00B5890B /* SimpleIntervalTimerUITestsLaunchTests.swift */; };
+		3BACB6FE2B822D120081C0FC /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BACB6FD2B822D120081C0FC /* CircularProgressBar.swift */; };
 		3BAF19FF2B6688D200853D7A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BAF19FE2B6688D200853D7A /* Launch Screen.storyboard */; };
 		3BF528682B65446A00BF47BC /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3BF528652B65446A00BF47BC /* beep.mp3 */; };
 		3BF528692B65446A00BF47BC /* ding-ding-ding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3BF528662B65446A00BF47BC /* ding-ding-ding.mp3 */; };
@@ -62,6 +63,7 @@
 		3B7FEF192B4ACCBF00B5890B /* SimpleIntervalTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleIntervalTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7FEF1D2B4ACCBF00B5890B /* SimpleIntervalTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleIntervalTimerUITests.swift; sourceTree = "<group>"; };
 		3B7FEF1F2B4ACCBF00B5890B /* SimpleIntervalTimerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleIntervalTimerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3BACB6FD2B822D120081C0FC /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		3BAF19FE2B6688D200853D7A /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3BF528652B65446A00BF47BC /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
 		3BF528662B65446A00BF47BC /* ding-ding-ding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ding-ding-ding.mp3"; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				3B68012D2B5D9F4400B620D0 /* ProgressColorModifier.swift */,
+				3BACB6FD2B822D120081C0FC /* CircularProgressBar.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				3B7FEF032B4ACCBE00B5890B /* SimpleIntervalTimerApp.swift in Sources */,
 				3B7E1F812B5478B300B102F9 /* SettingsView.swift in Sources */,
 				3B68012E2B5D9F4400B620D0 /* ProgressColorModifier.swift in Sources */,
+				3BACB6FE2B822D120081C0FC /* CircularProgressBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

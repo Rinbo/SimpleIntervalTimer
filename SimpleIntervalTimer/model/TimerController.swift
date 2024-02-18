@@ -37,7 +37,7 @@ class TimerController : ObservableObject{
     }
     
     private static func getDescription(_ currentRound: Int, _ totalRounds: Int) -> String {
-        return "Round \(currentRound) of \(totalRounds)"
+        return "\(currentRound) / \(totalRounds)"
     }
     
     func toggleActive() {
@@ -55,11 +55,13 @@ class TimerController : ObservableObject{
     func update(settingsModel: SettingsModel) {
         self.settingsModel = settingsModel
         saveSettingsModel(settingsModel)
+        clearToast()
         resetTimer()
     }
     
     func reset() {
         soundService.playBeep()
+        clearToast()
         resetTimer()
     }
     
@@ -68,19 +70,23 @@ class TimerController : ObservableObject{
         timerViewModel.reInit(currentValue: settingsModel.roundDuration, activate: false)
         currentRound = 1;
         roundBanner = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
-        clearToast()
         timerViewModel.active = false
         state = TimerState.INITIALIZED
     }
     
     private func onTick(value: Duration) {
-        if state == TimerState.ROUND 
+        if state == TimerState.ROUND
             && settingsModel.warningDuration == value
             && settingsModel.warningDuration > Duration.zero
         { soundService.playClap() }
     }
     
     private func onRoundComplete() {
+        if (settingsModel.numberOfRounds == 1) {
+            onFinished()
+            return
+        }
+        
         if settingsModel.restDuration == Duration.zero {
             onRestComplete()
             return

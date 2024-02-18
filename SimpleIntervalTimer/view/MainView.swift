@@ -15,31 +15,47 @@ struct MainView: View {
         VStack {
             VStack {
                 Spacer()
-                Text(controller.toast).font(.title).animation(.easeInOut)
+                Text(controller.toast)
+                    .font(.largeTitle)
+                    .animation(.easeInOut)
+                    .offset(y: 35.0)
+                Spacer()
             }
             
-            Text(controller.roundBanner)
-                .font(.largeTitle).padding(.bottom, -15.0)
-                .accessibilityIdentifier("RoundInfoBanner")
-            
-            
             TimerView(controller: controller, model: timerViewModel)
+                .padding(.bottom, 50)
             
             VStack {
                 Spacer()
                 HStack {
-                    Spacer()
                     Button(action: { controller.reset() }){
                         Image(systemName: "arrow.clockwise")
-                        .font(.system(size: 50)) }
+                        .font(.system(size: 40)) }
                     .foregroundColor(.accentColor)
                     .accessibilityIdentifier("ResetButton")
                     
                     Spacer()
                     
+                    Button(action: { controller.toggleActive() }) {
+                        Image(systemName: timerViewModel.active ? "pause.circle.fill": "play.circle.fill")
+                            .frame(width: 100, height: 100)
+                            .font(.system(size: 100))
+                            .background(Color(UIColor.systemBackground))
+                            .scaledToFit()
+                            .accessibilityIdentifier("PlayPauseButton")
+                    }
+                    .buttonStyle(.borderless)
+                    .foregroundColor(.green)
+                    .clipShape(Circle())
+                    .transaction { transaction in
+                        transaction.disablesAnimations = true
+                    }
+                    
+                    Spacer()
+                    
                     Button(action: { showingSettings = true }){
                         Image(systemName: "slider.horizontal.3")
-                            .font(.system(size: 50))
+                            .font(.system(size: 40))
                         
                     }
                     .foregroundColor(.accentColor)
@@ -49,10 +65,9 @@ struct MainView: View {
                             controller.update(settingsModel: settingsModel)
                         })
                     }
-                    
-                    Spacer()
                 }
-                .padding(.bottom, 28)
+                .padding(.vertical, 15.0)
+                .padding(.horizontal, 35.0)
             }
         }
         .background(getBackgroundColor())
