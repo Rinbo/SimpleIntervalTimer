@@ -7,6 +7,11 @@ struct SettingsView: View {
     @State var selectedRoundDuration: Duration
     @State var selectedNumberOfRounds: Int
     @State var selectedWarningDuration: Duration
+    @Environment(\.horizontalSizeClass) var sizeClass
+    
+    private var isRegular: Bool {
+        sizeClass == .regular
+    }
     
     private let callback: (_ settingsModel: SettingsModel) -> Void
     
@@ -32,88 +37,92 @@ struct SettingsView: View {
     }
     
     var body: some View {
-        Spacer()
-        HStack {
-            VStack {
-                Text("Round Duration")
-                    .font(.title3)
-                    .multilineTextAlignment(.center)
-                    .accessibilityIdentifier("RoundDurationTitle")
-                
-                Picker("Round Duration", selection: $selectedRoundDuration) {
-                    ForEach(roundDurations) { option in
-                        Text(option.label).tag(option.duration)
+        VStack {
+            Spacer()
+            HStack(spacing: isRegular ? 40 : 15) {
+                VStack {
+                    Text("Round Duration")
+                        .font(isRegular ? .title : .title3)
+                        .multilineTextAlignment(.center)
+                        .accessibilityIdentifier("RoundDurationTitle")
+                    
+                    Picker("Round Duration", selection: $selectedRoundDuration) {
+                        ForEach(roundDurations) { option in
+                            Text(option.label).tag(option.duration)
+                        }
                     }
+                    .pickerStyle(WheelPickerStyle())
+                    .clipped()
+                    .accessibilityIdentifier("RoundDurationPicker")
                 }
-                .pickerStyle(WheelPickerStyle())
-                .clipped()
-                .accessibilityIdentifier("RoundDurationPicker")
+                
+                VStack {
+                    Text("Rounds")
+                        .font(isRegular ? .title : .title3)
+                        .accessibilityIdentifier("NumberOfRoundsTitle")
+                    
+                    Picker("Rounds", selection: $selectedNumberOfRounds) {
+                        ForEach(1...20, id: \.self) { number in
+                            Text("\(number)").tag(number)
+                        }
+                    }
+                    .pickerStyle(WheelPickerStyle())
+                    .clipped()
+                    .accessibilityIdentifier("NumberOfRoundsPicker")
+                }
+                
+                VStack {
+                    Text("Rest Duration")
+                        .font(isRegular ? .title : .title3)
+                        .multilineTextAlignment(.center)
+                        .accessibilityIdentifier("RestDurationTitle")
+                    
+                    Picker("Rest Duration", selection: $selectedRestDuration) {
+                        ForEach(restDurations) { option in
+                            Text(option.label).tag(option.duration)
+                        }
+                    }
+                    .pickerStyle(WheelPickerStyle())
+                    .clipped()
+                    .accessibilityIdentifier("RestDurationPicker")
+                }
             }
+            .padding(15)
+            .frame(maxWidth: isRegular ? 800 : .infinity)
             
-            VStack {
-                Text("Rounds")
-                    .font(.title3)
-                    .accessibilityIdentifier("NumberOfRoundsTitle")
-                
-                Picker("Rounds", selection: $selectedNumberOfRounds) {
-                    ForEach(1...20, id: \.self) { number in
-                        Text("\(number)").tag(number)
-                    }
-                }
-                .pickerStyle(WheelPickerStyle())
-                .clipped()
-                .accessibilityIdentifier("NumberOfRoundsPicker")
-            }
+            Text("End of round alert")
+                .font(isRegular ? .title : .title3)
+                .padding(.top, isRegular ? 60 : 30)
+                .accessibilityIdentifier("EndOfRoundAlertTitle")
             
-            VStack {
-                Text("Rest Duration")
-                    .font(.title3)
-                    .multilineTextAlignment(.center)
-                    .accessibilityIdentifier("RestDurationTitle")
-                
-                Picker("Rest Duration", selection: $selectedRestDuration) {
-                    ForEach(restDurations) { option in
-                        Text(option.label).tag(option.duration)
-                    }
+            Picker("End of round alert", selection: $selectedWarningDuration) {
+                ForEach(warningDurations) { option in
+                    Text(option.label).tag(option.duration)
                 }
-                .pickerStyle(WheelPickerStyle())
-                .clipped()
-                .accessibilityIdentifier("RestDurationPicker")
             }
-        }.padding(15)
-        
-        Text("End of round alert")
-            .font(.title3)
-            .padding(.top, 30)
-            .accessibilityIdentifier("EndOfRoundAlertTitle")
-        
-        Picker("End of round alert", selection: $selectedWarningDuration) {
-            ForEach(warningDurations) { option in
-                Text(option.label).tag(option.duration)
+            .padding(.horizontal, 15.0)
+            .font(isRegular ? .title : .body)
+            .pickerStyle(PalettePickerStyle())
+            .clipped()
+            .accessibilityIdentifier("EndOfRoundAlertPicker")
+            .frame(maxWidth: isRegular ? 600 : .infinity)
+            
+            Spacer()
+            Button(action: {
+                isPresented = false
+                callback(SettingsModel(
+                    numberOfRounds: selectedNumberOfRounds,
+                    roundDuration: selectedRoundDuration,
+                    restDuration: selectedRestDuration,
+                    warningDuration: selectedWarningDuration))
+            }){
+                Image(systemName: "checkmark")
+                    .font(.system(size: isRegular ? 80 : 50))
             }
+            .foregroundColor(.green)
+            .padding(.bottom, isRegular ? 60 : 20)
+            .accessibilityIdentifier("SaveSettingsButton")
         }
-        .padding(.horizontal, 15.0)
-        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-        .pickerStyle(PalettePickerStyle())
-        .clipped()
-        .accessibilityIdentifier("EndOfRoundAlertPicker")
-        
-        Spacer()
-        Button(action: {
-            isPresented = false
-            callback(SettingsModel(
-                numberOfRounds: selectedNumberOfRounds,
-                roundDuration: selectedRoundDuration,
-                restDuration: selectedRestDuration,
-                warningDuration: selectedWarningDuration))
-        }){
-            Image(systemName: "checkmark")
-                .font(.system(size: 50))
-        }
-        .foregroundColor(.green)
-        .font(.largeTitle)
-        .padding(20)
-        .accessibilityIdentifier("SaveSettingsButton")
     }
 }
 

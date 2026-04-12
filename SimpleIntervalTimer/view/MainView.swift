@@ -5,6 +5,11 @@ struct MainView: View {
     @ObservedObject private var timerViewModel: TimerViewModel
     @State private var showingSettings: Bool = false
     @Environment(\.colorScheme) var colorScheme: ColorScheme
+    @Environment(\.horizontalSizeClass) var sizeClass
+    
+    private var isRegular: Bool {
+        sizeClass == .regular
+    }
     
     init(controller: TimerController) {
         self.controller = controller
@@ -12,64 +17,70 @@ struct MainView: View {
     }
     
     var body: some View {
-        VStack {
-            VStack {
-                Spacer()
-                Text(controller.toast)
-                    .font(.largeTitle)
-                    .animation(.easeInOut)
-                    .offset(y: 25.0)
-                Spacer()
-            }
-            
-            TimerView(controller: controller, model: timerViewModel)
-                .padding(.bottom, 45)
+        ZStack {
+            getBackgroundColor()
+                .ignoresSafeArea()
             
             VStack {
-                Spacer()
-                HStack {
-                    Button(action: { controller.reset() }){
-                        Image(systemName: "arrow.clockwise")
-                        .font(.system(size: 40)) }
-                    .foregroundColor(.accentColor)
-                    .accessibilityIdentifier("ResetButton")
-                    
+                VStack {
                     Spacer()
-                    
-                    Button(action: { controller.toggleActive() }) {
-                        Image(systemName: timerViewModel.active ? "pause.circle.fill": "play.circle.fill")
-                            .frame(width: 100, height: 100)
-                            .font(.system(size: 100))
-                            .background(Color(UIColor.systemBackground))
-                            .scaledToFit()
-                            .accessibilityIdentifier("PlayPauseButton")
-                    }
-                    .buttonStyle(.borderless)
-                    .foregroundColor(.green)
-                    .clipShape(Circle())
-                    .transaction { transaction in
-                        transaction.disablesAnimations = true
-                    }
-                    
+                    Text(controller.toast)
+                        .font(isRegular ? .system(size: 60) : .largeTitle)
+                        .animation(.easeInOut)
+                        .offset(y: 25.0)
                     Spacer()
-                    
-                    Button(action: { showingSettings = true }){
-                        Image(systemName: "slider.horizontal.3")
-                            .font(.system(size: 40))
-                        
-                    }
-                    .foregroundColor(.accentColor)
-                    .accessibilityIdentifier("SettingsButton")
-                    .sheet(isPresented: $showingSettings) {
-                        SettingsView(isPresented: $showingSettings, settingsModel: controller.settingsModel, callback: {(settingsModel: SettingsModel) in
-                            controller.update(settingsModel: settingsModel)
-                        })
-                    }
                 }
-                .padding(35)
+                
+                TimerView(controller: controller, model: timerViewModel)
+                    .padding(.bottom, isRegular ? 80 : 45)
+                
+                VStack {
+                    Spacer()
+                    HStack {
+                        Button(action: { controller.reset() }){
+                            Image(systemName: "arrow.clockwise")
+                            .font(.system(size: isRegular ? 60 : 40)) }
+                        .foregroundColor(.accentColor)
+                        .accessibilityIdentifier("ResetButton")
+                        
+                        Spacer()
+                        
+                        Button(action: { controller.toggleActive() }) {
+                            Image(systemName: timerViewModel.active ? "pause.circle.fill": "play.circle.fill")
+                                .frame(width: isRegular ? 150 : 100, height: isRegular ? 150 : 100)
+                                .font(.system(size: isRegular ? 150 : 100))
+                                .background(Color(UIColor.systemBackground))
+                                .scaledToFit()
+                                .accessibilityIdentifier("PlayPauseButton")
+                        }
+                        .buttonStyle(.borderless)
+                        .foregroundColor(.green)
+                        .clipShape(Circle())
+                        .transaction { transaction in
+                            transaction.disablesAnimations = true
+                        }
+                        
+                        Spacer()
+                        
+                        Button(action: { showingSettings = true }){
+                            Image(systemName: "slider.horizontal.3")
+                                .font(.system(size: isRegular ? 60 : 40))
+                            
+                        }
+                        .foregroundColor(.accentColor)
+                        .accessibilityIdentifier("SettingsButton")
+                        .sheet(isPresented: $showingSettings) {
+                            SettingsView(isPresented: $showingSettings, settingsModel: controller.settingsModel, callback: {(settingsModel: SettingsModel) in
+                                controller.update(settingsModel: settingsModel)
+                            })
+                        }
+                    }
+                    .padding(isRegular ? 60 : 35)
+                    .frame(maxWidth: isRegular ? 800 : .infinity)
+                }
             }
+            .frame(maxWidth: isRegular ? 1000 : .infinity)
         }
-        .background(getBackgroundColor())
     }
     
     private func getBackgroundColor() -> Color {
