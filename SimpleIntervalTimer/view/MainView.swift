@@ -18,12 +18,12 @@ struct MainView: View {
                 Text(controller.toast)
                     .font(.largeTitle)
                     .animation(.easeInOut)
-                    .offset(y: 35.0)
+                    .offset(y: 25.0)
                 Spacer()
             }
             
             TimerView(controller: controller, model: timerViewModel)
-                .padding(.bottom, 50)
+                .padding(.bottom, 45)
             
             VStack {
                 Spacer()
@@ -66,8 +66,7 @@ struct MainView: View {
                         })
                     }
                 }
-                .padding(.vertical, 15.0)
-                .padding(.horizontal, 35.0)
+                .padding(35)
             }
         }
         .background(getBackgroundColor())
