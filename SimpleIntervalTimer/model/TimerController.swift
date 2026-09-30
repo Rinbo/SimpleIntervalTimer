@@ -19,21 +19,24 @@ class TimerController : ObservableObject{
     @Published var toast : String = ""
     
     private let soundService: SoundService
+    private let liveActivityService: LiveActivityService
     
     init(settingsModel: SettingsModel) {
         self.settingsModel = settingsModel
         self.roundBanner = TimerController.getDescription(1, settingsModel.numberOfRounds)
         
-        self.timerViewModel = TimerViewModel(startValue: settingsModel.roundDuration, onTick: {value in }, onCompletion: {})
+        self.timerViewModel = TimerViewModel(startValue: settingsModel.roundDuration, onTick: {_, _ in }, onCompletion: {})
         self.soundService = SoundService()
+        self.liveActivityService = LiveActivityService()
     }
     
-    init(settingsModel: SettingsModel, timerViewModel: TimerViewModel, soundService: SoundService) {
+    init(settingsModel: SettingsModel, timerViewModel: TimerViewModel, soundService: SoundService, liveActivityService: LiveActivityService) {
         self.settingsModel = settingsModel
         self.roundBanner = TimerController.getDescription(1, settingsModel.numberOfRounds)
         
         self.timerViewModel = timerViewModel
         self.soundService = soundService
+        self.liveActivityService = liveActivityService
     }
     
     private static func getDescription(_ currentRound: Int, _ totalRounds: Int) -> String {
@@ -44,12 +47,21 @@ class TimerController : ObservableObject{
         if (state == TimerState.INITIALIZED) {
             soundService.playDing()
             self.timerViewModel.onCompletion = { self.onRoundComplete() }
-            self.timerViewModel.onTick = {value in self.onTick(value: value)}
+            self.timerViewModel.onTick = {previousValue, value in self.onTick(previousValue: previousValue, value: value)}
             timerViewModel.initTimer()
             state = TimerState.ROUND
+        } else {
+            soundService.playPause()
         }
         
         timerViewModel.active = !timerViewModel.active
+        
+        if timerViewModel.active {
+            soundService.startBackgroundKeepAlive()
+        } else {
+            soundService.stopBackgroundKeepAlive()
+        }
+        updateLiveActivity()
     }
     
     func update(settingsModel: SettingsModel) {
@@ -71,12 +83,15 @@ class TimerController : ObservableObject{
         currentRound = 1;
         roundBanner = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
         timerViewModel.active = false
+        soundService.stopBackgroundKeepAlive()
+        liveActivityService.end()
         state = TimerState.INITIALIZED
     }
     
-    private func onTick(value: Duration) {
+    private func onTick(previousValue: Duration, value: Duration) {
         if state == TimerState.ROUND
-            && settingsModel.warningDuration == value
+            && previousValue > settingsModel.warningDuration
+            && value <= settingsModel.warningDuration
             && settingsModel.warningDuration > Duration.zero
         { soundService.playClap() }
     }
@@ -97,6 +112,7 @@ class TimerController : ObservableObject{
         timerViewModel.reInit(currentValue: settingsModel.restDuration)
         self.timerViewModel.onCompletion = { self.onRestComplete() }
         state = TimerState.REST
+        updateLiveActivity(startDelay: TimerViewModel.REINIT_DELAY_SECONDS)
     }
     
     private func onRestComplete() {
@@ -107,6 +123,7 @@ class TimerController : ObservableObject{
         roundBanner = TimerController.getDescription(currentRound, settingsModel.numberOfRounds)
         self.timerViewModel.onCompletion = { self.currentRound == self.settingsModel.numberOfRounds ? self.onFinished() : self.onRoundComplete()}
         state = TimerState.ROUND
+        updateLiveActivity(startDelay: TimerViewModel.REINIT_DELAY_SECONDS)
     }
     
     private func onFinished() {
@@ -115,6 +132,21 @@ class TimerController : ObservableObject{
         setToast(message: "Exercise Completed")
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { self.clearToast() }
         resetTimer()
+    }
+    
+    // startDelay: a new round or rest only starts counting after a short pause (see TimerViewModel.reInit).
+    private func updateLiveActivity(startDelay: TimeInterval = 0) {
+        let isRest = state == TimerState.REST
+        let remaining = timerViewModel.currentValue / Duration.seconds(1)
+        let phaseDuration = (isRest ? settingsModel.restDuration : settingsModel.roundDuration) / Duration.seconds(1)
+        
+        liveActivityService.update(IntervalTimerAttributes.ContentState(
+            isRest: isRest,
+            currentRound: currentRound,
+            totalRounds: settingsModel.numberOfRounds,
+            phaseDuration: phaseDuration,
+            endDate: Date().addingTimeInterval(startDelay + remaining),
+            pausedRemaining: timerViewModel.active ? nil : remaining))
     }
     
     private func saveSettingsModel(_ settingsModel: SettingsModel) {

@@ -26,7 +26,7 @@ struct MainView: View {
                     Spacer()
                     Text(controller.toast)
                         .font(isRegular ? .system(size: 60) : .largeTitle)
-                        .animation(.easeInOut)
+                        .animation(.easeInOut, value: controller.toast)
                         .offset(y: 25.0)
                     Spacer()
                 }
@@ -41,6 +41,7 @@ struct MainView: View {
                             Image(systemName: "arrow.clockwise")
                             .font(.system(size: isRegular ? 60 : 40)) }
                         .foregroundColor(.accentColor)
+                        .accessibilityLabel("Reset")
                         .accessibilityIdentifier("ResetButton")
                         
                         Spacer()
@@ -54,6 +55,7 @@ struct MainView: View {
                                 .accessibilityIdentifier("PlayPauseButton")
                         }
                         .buttonStyle(.borderless)
+                        .accessibilityLabel(timerViewModel.active ? "Pause" : "Start")
                         .foregroundColor(.green)
                         .clipShape(Circle())
                         .transaction { transaction in
@@ -68,6 +70,7 @@ struct MainView: View {
                             
                         }
                         .foregroundColor(.accentColor)
+                        .accessibilityLabel("Settings")
                         .accessibilityIdentifier("SettingsButton")
                         .sheet(isPresented: $showingSettings) {
                             SettingsView(isPresented: $showingSettings, settingsModel: controller.settingsModel, callback: {(settingsModel: SettingsModel) in

@@ -24,6 +24,7 @@ struct TimerView : View {
             
             Text(model.currentValue.formatted(Duration.TimeFormatStyle.time(pattern: .minuteSecond(padMinuteToLength: 2))))
                 .font(.system(size: isRegular ? 150 : 90))
+                .monospacedDigit()
                 .foregroundColor(controller.state == TimerState.REST ? .gray : .primary)
                 .accessibilityIdentifier("TimerValue")
                 .frame(maxWidth: .infinity, alignment: .center)
